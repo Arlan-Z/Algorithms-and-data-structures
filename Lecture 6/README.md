@@ -23,65 +23,52 @@
 
 **Рекурсивная реализация**
 ```c++
-void insert(Node*& root, int val) {
-    Node* node = new Node(val);
-    
-    if (!root) {
-        root = node;
-        return;
+void insert(int val){
+    root = insert(root,val);
+}
+Node* insert(Node* root, int val){
+    if(!root){
+        return new Node(val);
     }
-
-    Node* cur = root;
-
-    while (true) {
-        if (val > cur->val) {
-            if (cur->right) {
-                cur = cur->right;
-            } else {
-                cur->right = node;
-                return;
-            }
-        } else {
-            if (cur->left) {
-                cur = cur->left;
-            } else {
-                cur->left = node;
-                return;
-            }
+    else{
+        if(val > root->val){
+            root->right = insert(root->right, val);
+        }
+        else{
+            root->left = insert(root->left, val);
         }
     }
+    return root;
 }
 ```
 
 **Итеративная реализация**
 ```c++
-void insert(int val) {
-    Node* node = new Node(val);
-    
+void insert(int val){
+    root = insert(root,val);
+}
+Node* insert(Node* root, int val) {
+    Node* newNode = new Node(val);
     if (!root) {
-        root = node;
-    } else {
-        Node* cur = root;
-        while (true) {
-            if (val <= cur->val) {
-                if (cur->left) {
-                    cur = cur->left;
-                } else {
-                    cur->left = node;
-                    size++;
-                    break;
-                }
-            } else {
-                if (cur->right) {
-                    cur = cur->right;
-                } else {
-                    cur->right = node;
-                    size++;
-                    break;
-                }
+        return newNode;
+    }
+    Node* cur = root;
+    while (cur) {
+        if (val > cur->val) {
+            if (!cur->right) {
+                cur->right = newNode;
+                return root; 
+            }
+            cur = cur->right;
+        } else {
+            if (!cur->left) {
+                cur->left = newNode;
+                return root; 
+            }
+            cur = cur->left;
             }
         }
-    }
+    return root;
 }
 ```
 
