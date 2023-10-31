@@ -285,142 +285,243 @@ int main() {
 приоритетные очереди предоставляют эффективное средство для этой цели.  
 Реализация:
 ```c++
-#include <iostream>
-#include <vector>
-
-// Структура элемента для хранения значения и его приоритета
-struct Element {
-    int value;
-    int priority;
-
-    Element(int val, int prio) : value(val), priority(prio) {}
-};
-
-class PriorityQueue {
-private:
-    std::vector<Element> heap;
-
-    // Восстановление свойств кучи при добавлении элемента
-    void heapifyUp(int index) {
-        while (index > 0) {
-            int parentIndex = (index - 1) / 2;
-            if (heap[parentIndex].priority > heap[index].priority) {
-                std::swap(heap[parentIndex], heap[index]);
-                index = parentIndex;
-            } else {
-                break;
-            }
-        }
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int H[50];
+int size = -1;
+ 
+// Function to return the index of the
+// parent node of a given node
+int parent(int i)
+{
+ 
+    return (i - 1) / 2;
+}
+ 
+// Function to return the index of the
+// left child of the given node
+int leftChild(int i)
+{
+ 
+    return ((2 * i) + 1);
+}
+ 
+// Function to return the index of the
+// right child of the given node
+int rightChild(int i)
+{
+ 
+    return ((2 * i) + 2);
+}
+ 
+// Function to shift up the node in order
+// to maintain the heap property
+void heapifyUp(int i) // max heapify
+{
+    while (i > 0 && H[parent(i)] < H[i]) {
+ 
+        // Swap parent and current node
+        swap(H[parent(i)], H[i]);
+ 
+        // Update i to parent of i
+        i = parent(i);
     }
-
-    // Восстановление свойств кучи при удалении элемента
-    void heapifyDown(int index) {
-        int size = heap.size();
-        while (true) {
-            int leftChild = 2 * index + 1;
-            int rightChild = 2 * index + 2;
-            int smallest = index;
-
-            if (leftChild < size && heap[leftChild].priority < heap[smallest].priority) {
-                smallest = leftChild;
-            }
-
-            if (rightChild < size && heap[rightChild].priority < heap[smallest].priority) {
-                smallest = rightChild;
-            }
-
-            if (smallest != index) {
-                std::swap(heap[index], heap[smallest]);
-                index = smallest;
-            } else {
-                break;
-            }
-        }
+}
+ 
+// Function to shift down the node in
+// order to maintain the heap property
+void heapifyDown(int i) // min heapify
+{
+    int maxIndex = i;
+ 
+    // Left Child
+    int l = leftChild(i);
+ 
+    if (l <= size && H[l] > H[maxIndex]) {
+        maxIndex = l;
     }
-
-public:
-    // Добавление элемента в очередь с приоритетами
-    void push(int value, int priority) {
-        heap.push_back(Element(value, priority));
-        heapifyUp(heap.size() - 1);
+ 
+    // Right Child
+    int r = rightChild(i);
+ 
+    if (r <= size && H[r] > H[maxIndex]) {
+        maxIndex = r;
     }
-
-    // Извлечение элемента с наивысшим приоритетом из очереди
-    Element pop() {
-        if (empty()) {
-            throw std::out_of_range("Priority queue is empty");
-        }
-        Element top = heap[0];
-        heap[0] = heap.back();
-        heap.pop_back();
-        heapifyDown(0);
-        return top;
+ 
+    // If i not same as maxIndex
+    if (i != maxIndex) {
+        swap(H[i], H[maxIndex]);
+        heapifyDown(maxIndex);
     }
-
-    // Проверка пуста ли очередь
-    bool empty() const {
-        return heap.empty();
+}
+ 
+// Function to insert a new element
+// in the Binary Heap
+void insert(int p)
+{
+    size = size + 1;
+    H[size] = p;
+ 
+    // Shift Up to maintain heap property
+    heapifyUp(size);
+}
+ 
+// Function to extract the element with
+// maximum priority
+int extractMax()
+{
+    int result = H[0];
+ 
+    // Replace the value at the root
+    // with the last leaf
+    H[0] = H[size];
+    size = size - 1;
+ 
+    // Shift down the replaced element
+    // to maintain the heap property
+    heapifyDown(0);
+    return result;
+}
+ 
+// Function to change the priority
+// of an element
+void changePriority(int i, int p)
+{
+    int oldp = H[i];
+    H[i] = p;
+ 
+    if (p > oldp) {
+        heapifyUp(i);
     }
-};
-
-int main() {
-    PriorityQueue pq;
-    pq.push(3, 1);
-    pq.push(1, 3);
-    pq.push(4, 2);
-    pq.push(1, 4);
-    pq.push(5, 1);
-
-    // Вывод элементов очереди в порядке их приоритета
-    while (!pq.empty()) {
-        Element top_element = pq.pop();
-        std::cout << "Value: " << top_element.value << ", Priority: " << top_element.priority << std::endl;
+    else {
+        heapifyDown(i);
     }
-
+}
+ 
+// Function to get value of the current
+// maximum element
+int getMax()
+{
+ 
+    return H[0];
+}
+ 
+// Function to remove the element
+// located at given index
+void remove(int i)
+{
+    H[i] = getMax() + 1;
+ 
+    // Shift the node to the root
+    // of the heap
+    heapifyUp(i);
+ 
+    // Extract the node
+    extractMax();
+}
+ 
+// Driver Code
+int main()
+{
+ 
+    /*         45
+            /      \
+           31      14
+          /  \    /  \
+         13  20  7   11
+        /  \
+       12   7
+    Create a priority queue shown in 
+    example in a binary max heap form.
+    Queue will be represented in the
+    form of array as:
+    45 31 14 13 20 7 11 12 7 */
+ 
+    // Insert the element to the
+    // priority queue
+    insert(45);
+    insert(20);
+    insert(14);
+    insert(12);
+    insert(31);
+    insert(7);
+    insert(11);
+    insert(13);
+    insert(7);
+ 
+    int i = 0;
+ 
+    // Priority queue before extracting max
+    cout << "Priority Queue : ";
+    while (i <= size) {
+        cout << H[i] << " ";
+        i++;
+    }
+ 
+    cout << "\n";
+ 
+    // Node with maximum priority
+    cout << "Node with maximum priority : "
+         << extractMax() << "\n";
+ 
+    // Priority queue after extracting max
+    cout << "Priority queue after "
+         << "extracting maximum : ";
+    int j = 0;
+    while (j <= size) {
+        cout << H[j] << " ";
+        j++;
+    }
+ 
+    cout << "\n";
+ 
+    // Change the priority of element
+    // present at index 2 to 49
+    changePriority(2, 49);
+    cout << "Priority queue after "
+         << "priority change : ";
+    int k = 0;
+    while (k <= size) {
+        cout << H[k] << " ";
+        k++;
+    }
+ 
+    cout << "\n";
+ 
+    // Remove element at index 3
+    remove(3);
+    cout << "Priority queue after "
+         << "removing the element : ";
+    int l = 0;
+    while (l <= size) {
+        cout << H[l] << " ";
+        l++;
+    }
     return 0;
 }
 ```
+Этот код реализует бинарную кучу с максимальным приоритетом:
 
-1. Внутри класса есть вектор heap, который используется для хранения
-элементов с их значениями и приоритетами.
-1. Метод push используется для вставки элемента с заданным значением и
-приоритетом. Элемент добавляется в вектор, а затем вызывается heapifyUp
-для восстановления свойства мин-кучи.
-2. Метод pop извлекает элемент с наивысшим приоритетом из начала очереди.
-Этот элемент удаляется из вектора, и после этого вызывается heapifyDown,
-чтобы восстановить свойство мин-кучи.
-3. Метод empty просто проверяет, пуста ли очередь, возвращая true, если она
-пуста, и false в противном случае.  
+Определили массив H для хранения элементов бинарной кучи. Каждый элемент массива имеет два поля: значение и приоритет.  Используем size для отслеживания текущего размера кучи.
 
-Этот класс позволяет вам управлять элементами с приоритетами и извлекать их в
-порядке возрастания приоритета. Вы можете использовать его в различных
-ситуациях, где требуется упорядочивание элементов по приоритету, как описано
-выше.
-1. Приватные члены класса:
-- `std::vector<Element> heap;`: Это вектор, который хранит элементы
-приоритетной очереди. Каждый элемент представлен структурой `Element`,
-содержащей значение и приоритет элемента.
-- `void heapifyUp(int index)`: Это приватная функция, используемая для поднятия
-элемента вверх в куче после вставки. Она принимает индекс элемента в `heap` и
-сравнивает его с его родителем, и, если необходимо, меняет их местами. Затем она
-переходит к родителю и продолжает анализ до корня кучи.
-- `void heapifyDown(int index)`: Эта приватная функция используется для
-опускания элемента вниз в куче после извлечения элемента. Она принимает
-индекс элемента и сравнивает его с детьми, заменяя его на наименьший из детей,
-если необходимо, и так продолжается до тех пор, пока свойство мин-кучи не
-будет восстановлено.
-2. Публичные члены класса:
-- `void push(int value, int priority)`: Это публичная функция, которую можно
-использовать для вставки элемента в приоритетную очередь. Она принимает
-значение элемента (`value`) и его приоритет (`priority`) и добавляет их в `heap`.
-Затем вызывается `heapifyUp` для восстановления корректного порядка.
-- `Element pop()`: Это публичная функция для извлечения элемента с наивысшим
-приоритетом из очереди. Возвращает извлеченный элемент вместе с его
-значением и приоритетом. После извлечения вызывается `heapifyDown`, чтобы
-восстановить свойство мин-кучи.
-- `bool empty() const`: Это публичная функция, предназначенная для проверки,
-пуста ли приоритетная очередь. Возвращает `true`, если очередь пуста, и `false`,
-если в ней есть элементы
+Функции parent, leftChild и rightChild предоставляют индексы родительских и дочерних узлов в массиве. Эти функции используются для навигации по дереву бинарной кучи, представленной в виде массива.
+
+Функция heapifyUp выполняет "проталкивание" элемента вверх в куче, чтобы восстановить свойство кучи после вставки нового элемента. Она сравнивает элемент с его родителем и, если он больше, обменивает их местами. Этот процесс продолжается до корня кучи.
+
+Функция heapifyDown выполняет "просеивание" элемента вниз, чтобы восстановить свойство кучи после извлечения максимума или изменения приоритета. Она сравнивает элемент с его дочерними узлами и обменивает его с наибольшим дочерним узлом, если он меньше. Этот процесс продолжается до листьев кучи.
+
+Функция insert добавляет новый элемент в кучу и вызывает heapifyUp для поддержания свойства кучи.
+
+Функция extractMax извлекает элемент с максимальным приоритетом (находящийся в корне кучи), заменяет его последним элементом в куче и вызывает heapifyDown для восстановления свойства кучи.
+
+Функция changePriority изменяет приоритет элемента по заданному индексу. Если новый приоритет больше старого, она вызывает heapifyUp, иначе вызывает heapifyDown.
+
+Функция getMax возвращает значение элемента с максимальным приоритетом (находящегося в корне кучи).
+
+Функция remove помечает элемент по заданному индексу как удаленный, а затем вызывает heapifyUp и extractMax, чтобы удалить его из кучи.
+
+
 
 Подробнее 
 https://www.geeksforgeeks.org/priority-queue-using-binary-heap/
