@@ -317,7 +317,7 @@ int rightChild(int i)
  
 // Function to shift up the node in order
 // to maintain the heap property
-void heapifyUp(int i) // max heapify
+void heapifyUp(int i) //  heapify  с  низу  в верх
 {
     while (i > 0 && H[parent(i)] < H[i]) {
  
@@ -331,7 +331,7 @@ void heapifyUp(int i) // max heapify
  
 // Function to shift down the node in
 // order to maintain the heap property
-void heapifyDown(int i) // min heapify
+void heapifyDown(int i) //  обычный  heapify  с верху в низ
 {
     int maxIndex = i;
  
