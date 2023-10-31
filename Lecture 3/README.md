@@ -82,7 +82,7 @@ int dequeSize = myDeque.size(); // Получение размера дека
 **Минусы:**
 - Немного более сложен в использовании, чем стек или очередь.
 
-![SQ](sq1.png)
+![FF](sq1.jpg)
 
 ## Map
 ![](https://static.studytonight.com/cpp/images/map-example.png)
