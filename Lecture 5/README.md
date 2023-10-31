@@ -44,13 +44,11 @@ Mожно называть левые и правые как хотите нек
 ```c++
 int binarySearch(int arr[], int left, int right, int x) {
     if (right >= left) {
-        int mid = (right + left) / 2;
-                            // условие остановки рекурсии это нахождение элемента
-        if (arr[mid] == x) {
+        int mid = (right + left) / 2;         
+        if (arr[mid] == x) { // условие остановки рекурсии это нахождение элемента       
             return mid;
-        }
-                            // если x меньше среднего ищем в левой части
-        if (arr[mid] > x) {
+        }             
+        if (arr[mid] > x) {  // если x меньше среднего ищем в левой части
             return binarySearch(arr, left, mid - 1, x);
         } else {            // иначе в правой части
             return binarySearch(arr, mid + 1, right, x);
