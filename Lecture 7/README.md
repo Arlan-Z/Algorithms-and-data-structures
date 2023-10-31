@@ -421,3 +421,6 @@ int main() {
 - `bool empty() const`: Это публичная функция, предназначенная для проверки,
 пуста ли приоритетная очередь. Возвращает `true`, если очередь пуста, и `false`,
 если в ней есть элементы
+
+Подробнее 
+https://www.geeksforgeeks.org/priority-queue-using-binary-heap/
