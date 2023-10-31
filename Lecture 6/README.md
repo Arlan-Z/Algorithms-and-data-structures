@@ -325,4 +325,92 @@ public:
     }
 };
 ```
-Данный алгоритм эффективно вычисляет диаметр бинарного дерева с временной сложностью **O(n)**, где **n** - количество узлов в дереве, так как каждый узел посещается ровно один раз.
+Данный алгоритм эффективно вычисляет диаметр бинарного дерева с временной сложностью **O(n)**, где **n** - количество узлов в дереве, так как каждый узел 
+посещается ровно один раз.
+
+## Нахождение количества узлов и ширину высоту в бинарном дереве
+```c++
+#include <iostream>
+using namespace std;
+
+class TreeNode {
+public:
+    int data;
+    TreeNode* left;
+    TreeNode* right;
+
+    TreeNode(int value) : data(value), left(nullptr), right(nullptr) {}
+};
+
+int countNodes(TreeNode* root) {
+    if (root == nullptr) {
+        return 0; // Если дерево пусто, вернуть 0 узлов.
+    }
+
+    // Рекурсивно подсчитываем узлы в левом и правом поддеревьях и добавляем 1 за текущий узел.
+    return 1 + countNodes(root->left) + countNodes(root->right);
+}
+
+int height(TreeNode* root) {
+    if (root == nullptr) {
+        return 0; 
+    }
+    int leftHeight = height(root->left);
+    int rightHeight = height(root->right);
+
+    return 1 + max(leftHeight, rightHeight);
+}
+
+int findWidth(TreeNode* root) {
+    if (root == nullptr) {
+        return 0; // Пустое дерево не имеет ширины.
+    }
+
+    vector<TreeNode*> currentLevel;
+    vector<TreeNode*> nextLevel;
+    int maxWidth = 1; // Минимальная ширина уровня - хотя бы один узел в корне.
+
+    currentLevel.push_back(root);
+
+    while (!currentLevel.empty()) {
+        TreeNode* currentNode = currentLevel.front();
+        currentLevel.erase(currentLevel.begin());
+
+        if (currentNode->left) {
+            nextLevel.push_back(currentNode->left);
+        }
+
+        if (currentNode->right) {
+            nextLevel.push_back(currentNode->right);
+        }
+
+        if (currentLevel.empty() && !nextLevel.empty()) {
+            int width = nextLevel.size();
+            if (width > maxWidth) {
+                maxWidth = width;
+            }
+            swap(currentLevel, nextLevel);
+        }
+    }
+
+    return maxWidth;
+}
+
+int main() {
+    // Создаем простое бинарное дерево
+    TreeNode* root = new TreeNode(1);
+    root->left = new TreeNode(2);
+    root->right = new TreeNode(3);
+    root->left->left = new TreeNode(4);
+    root->left->right = new TreeNode(5);
+
+    int nodeCount = countNodes(root);
+
+    cout << "Количество узлов в бинарном дереве: " << nodeCount << endl;
+    cout << "Высота бинарного дерева: " << height(root) << endl;
+    cout << "Ширина бинарного дерева: " << findWidth(root) << endl;
+
+    return 0;
+}
+
+```
