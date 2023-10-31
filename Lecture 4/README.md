@@ -224,7 +224,76 @@ class LinkedList {
             cout << endl;
         }
 };
+```
+## Нахождение цикла 
+Цикл в linked list означает что будет цикл те на какую либо ноду в нем будет указывать (next) больше чем 1 раз кроме случая когда конец указывает в начало
+Для нахождения цикла в linked list можно сделать следующее - в ноду добавить переменную cnt = 0 которая будет показывать сколько раз на нее указывали , проходить по всему листу и для каждой ноды увеличивать cnt и если он будет больше 1 то значит есть цикл и это продолжаем до тех пор пока не закончится лист или не обнаружется цикл.
+```
+#include <iostream>
+using namespace std;
 
+class Node{
+public:
+    int val;
+    Node* next;
+    int cnt;
+public:
+    Node(int val){
+        this->val = val;
+        this->next = nullptr;
+    }
+};
+class LL{
+public:
+    Node* root;
+    Node* tail;
+public:
+    LL(){
+        root = nullptr;
+        tail = nullptr;
+    }
+    void insert(int val){
+        Node* newNode = new Node(val);
+        if (!root) {
+            root = newNode;
+            tail = root;
+            return;
+        }
+        Node* current = root;
+        while (current->next) {
+            current = current->next;
+        }
+        current->next = newNode;
+        tail = newNode;
+    }
+    bool detectLoop(){
+        if (!root) {
+            return false;
+        }
+        Node* node = root;
+        while(node){
+            node->cnt++;   
+            if(node->cnt>1){  // если текущаяя нода вернулась в прошлую то ее cnt увеличивается на 1 и будет равен 2 
+                return true;
+            }   
+            node = node->next;      
+        }
+        return false;   
+    }
+};
+int main() {
+    LL ll;
+    ll.insert(10);
+    ll.insert(5);
+    ll.insert(15);
+    ll.insert(3);
+    ll.insert(7);
+    ll.insert(12);
+    ll.insert(18);
+    ll.tail->next = ll.root->next;
+    cout<<ll.detectLoop();
+    return 0;
+}
 ```
 ## Применение связанных списков:
 1. Хранение и управление последовательными данными. Связанные списки
