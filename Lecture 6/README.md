@@ -347,6 +347,14 @@ public:
 Данный алгоритм эффективно вычисляет диаметр бинарного дерева с временной сложностью **O(n)**, где **n** - количество узлов в дереве, так как каждый узел 
 посещается ровно один раз.
 
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/218d3f38-7db8-40f9-bc8b-3aa13fb37804)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/01ff2cba-6883-4c63-8813-462fb40896ce)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/9cd28949-a78c-4b3a-82dd-c13339bf6f34)
+
+
+
+
+
 ## Нахождение количества узлов , ширину и высоту в бинарном дереве
 ```c++
 #include <iostream>
