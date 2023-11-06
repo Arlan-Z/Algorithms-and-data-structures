@@ -212,9 +212,68 @@ factorial of 5 is: 120
 ## Краткие выводы о рекурсии
 В рекурсии существует два типа случаев: рекурсивный случай и базовый случай.
 Базовый случай использует для завершения рекурсивной функции, случай когда
+
+
+
 основное условие оказывается истинным.  
 При каждом рекурсивном вызове в стековой памяти создается новая копия
 данного метода.  
 Бесконечная рекурсия может привести к исчерпанию стековой памяти.
 Примеры рекурсивных алгоритмов: Merge Sort, Quick Sort, Tower of Hanoi, Fibonacci
 Series, Factorial Problem и др.
+
+
+## Решето Эратосфена и нахождение простых чисел
+Для нахождения всех простых чисел не больше заданного числа n, следуя методу Эратосфена, нужно выполнить следующие шаги:
+
+1 Выписать подряд все целые числа от двух до n (2, 3, 4, …, n).
+2 Пусть переменная p изначально равна двум — первому простому числу.
+3 Зачеркнуть в списке числа от 2p до n, считая шагами по p (это будут числа, кратные p: 2p, 3p, 4p, …).
+4 Найти первое незачёркнутое число в списке, большее чем p, и присвоить значению переменной p это число.
+5 Повторять шаги 3 и 4, пока возможно.
+6 Теперь все незачёркнутые числа в списке — это все простые числа от 2 до n.
+
+На практике, алгоритм можно улучшить следующим образом. На шаге № 3 числа можно зачеркивать, начиная сразу с числа p2, потому что все меньшие числа, кратные p, обязательно имеют простой делитель меньше p, а они уже зачеркнуты к этому времени. И, соответственно, останавливать алгоритм можно, когда p2 станет больше, чем n. Кроме того, все простые числа, кроме 2, — нечётные числа, и поэтому для них можно считать шагами по 2p, начиная с p2.
+
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/63bc5db4-2c9a-4b27-8d7d-1dc5a56d5d07)
+
+```c+
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+void SieveOfEratosthenes(int n) 
+{ 
+    // Create a boolean array "prime[0..n]" and initialize 
+    // all entries it as true. A value in prime[i] will 
+    // finally be false if i is Not a prime, else true. 
+    bool prime[n + 1]; 
+    memset(prime, true, sizeof(prime)); 
+  
+    for (int p = 2; p * p <= n; p++) { 
+        // If prime[p] is not changed, then it is a prime 
+        if (prime[p] == true) { 
+            // Update all multiples of p greater than or 
+            // equal to the square of it numbers which are 
+            // multiple of p and are less than p^2 are 
+            // already been marked. 
+            for (int i = p * p; i <= n; i += p) 
+                prime[i] = false; 
+        } 
+    } 
+  
+    // Print all prime numbers 
+    for (int p = 2; p <= n; p++) 
+        if (prime[p]) 
+            cout << p << " "; 
+} 
+  
+// Driver Code 
+int main() 
+{ 
+    int n = 30; 
+    cout << "Following are the prime numbers smaller "
+         << " than or equal to " << n << endl; 
+    SieveOfEratosthenes(n); 
+    return 0; 
+}
+```
