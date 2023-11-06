@@ -128,6 +128,7 @@ void postorderTraversal(Node* node) {
 
 **Для лучшего понимания:**
 
+
 https://www.youtube.com/watch?v=4zVdfkpcT6U
 
 https://www.youtube.com/watch?v=5dySuyZf9Qg
