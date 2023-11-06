@@ -280,4 +280,94 @@ int main()
 }
 ```
 
+Нахождение k того простого числа через одну функцию 
+
+```c++
+#include <iostream>
+#include <vector>
+using namespace std;
+int findKthPrime(int k) {
+    if (k <= 0) {
+        return -1;  // Не существует отрицательных простых чисел
+    }
+    vector<int> primes;
+    int num = 2;
+    while (primes.size() < k) {
+        bool isPrime = true;
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if (isPrime) {
+            primes.push_back(num);
+        }
+        num++;
+    }
+    return primes[k - 1];
+}
+
+int main() {
+    int k;
+    cout << "Введите значение k: ";
+    cin >> k;
+    int kthPrime = findKthPrime(k);
+    if (kthPrime == -1) {
+        cout << "Некорректное значение. " << endl;
+    }
+    else {
+        cout << "k-тое простое число: " << kthPrime << endl;
+    }
+    return 0;
+}
+```
+Нахождение k того простого числа через дополнительную функцию isprime
+
+```c++
+#include <iostream>
+#include <vector>
+using namespace std;
+bool isPrime(int num) {
+    if (num <= 1) {
+        return false;
+    }
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int findKthPrime(int k) {
+    if (k <= 0) {
+        return -1; 
+    }
+    vector<int> primes;
+    int num = 2; 
+    while (primes.size() < k) {
+        if (isPrime(num)) {
+            primes.push_back(num);
+        }
+        num++;
+    }
+    return primes[k - 1];
+}
+
+int main() {
+    int k;
+    cout << "Введите значение k: ";
+    cin >> k;
+    int kthPrime = findKthPrime(k);
+    if (kthPrime == -1) {
+        cout << "Некорректное значение k." << endl;
+    } 
+    else {
+        cout << "k-тое простое число: " << kthPrime << endl;
+    }
+
+    return 0;
+}
+```
 
