@@ -237,6 +237,8 @@ Series, Factorial Problem и др.
 
 https://ru.wikipedia.org/wiki/Решето_Эратосфена
 
+![nya](New_Animation_Sieve_of_Eratosthenes.gif)
+
 ```c+
 #include <bits/stdc++.h> 
 using namespace std; 
