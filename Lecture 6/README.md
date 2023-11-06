@@ -124,6 +124,10 @@ void postorderTraversal(Node* node) {
         cout << node->val << " ";
     }
 }
+**Для лучшего понимания:**
+https://www.youtube.com/watch?v=4zVdfkpcT6U
+https://www.youtube.com/watch?v=5dySuyZf9Qg
+https://www.youtube.com/watch?v=1WxLM2hwL-U
 ```
 Вывод дерева в вертикальном виде используя **инфиксный обход**:
 ```c++
