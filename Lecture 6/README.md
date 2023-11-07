@@ -442,6 +442,14 @@ int main() {
     return 0;
 }
 ```
+посчет количества нод:
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/afa6e667-3b14-42b8-bb81-8cad94d07200)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/c37e94b5-0193-4419-a7e0-ebd34d21161f)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/9882ebc3-1095-4c7e-8233-853a8ac3f167)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/9c2e83f0-cef0-4d0e-b0d8-ed24359a1afe)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/3429e054-75f1-42d3-9460-3bcb97ee2e0c)
+
+
 высота:
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/6e8b1974-6121-4b49-88f1-40b80bb523c1)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/a49911fe-f748-4177-a59d-fcb30abd3754)
