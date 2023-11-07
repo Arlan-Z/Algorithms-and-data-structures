@@ -1,1 +1,57 @@
 
+
+```c++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int partition(vector<int> &v, int l, int r) {
+    int pivot = v[r];
+    int j = l;
+    for(int i = l; i < r; i++) { 
+        if(v[i] <= pivot) {
+            swap(v[i], v[j]);
+            j++;
+        }
+    }
+    swap(v[j], v[r]);
+    return j;
+}
+
+void quickSort(vector<int> &v, int l, int r) {
+    if(l < r){
+        int p = partition(v, l, r);
+        quickSort(v, l, p - 1);
+        quickSort(v, p + 1, r);
+    }
+}
+
+int main() {
+    vector<int> arr = {12, 11, 13, 5, 6, 7};
+    int n = arr.size();
+
+    cout << "Unsorted array: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    quickSort(arr, 0, n - 1);
+
+    cout << "Sorted array: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
+```
+
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/a66cb9e9-10c2-4463-bf19-356efec51e9d)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/117ed317-0eea-4d0a-b470-c40dacc1957d)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/ec46517e-134f-41ab-80d7-caf384c2b390)
+
+
+
