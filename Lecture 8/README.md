@@ -51,7 +51,8 @@ int main() {
 
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/a66cb9e9-10c2-4463-bf19-356efec51e9d)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/117ed317-0eea-4d0a-b470-c40dacc1957d)
-![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/556f0d3e-1c4d-4721-861f-d0dde2a82525)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/0c18b31c-c1d1-4fd7-8411-d9e2f0fbda93)
+
 
 
 
