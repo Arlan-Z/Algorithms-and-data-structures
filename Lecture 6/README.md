@@ -357,7 +357,7 @@ public:
 
 
 
-## Нахождение количества узлов , ширину и высоту в бинарном дереве
+## Нахождение количества узлов , ширину и высоту в бинарном дерева
 ```c++
 #include <iostream>
 using namespace std;
@@ -441,5 +441,13 @@ int main() {
 
     return 0;
 }
-
 ```
+высота:
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/6e8b1974-6121-4b49-88f1-40b80bb523c1)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/a49911fe-f748-4177-a59d-fcb30abd3754)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/bd77407b-6017-493c-9020-f8536d4fd768)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/91faef36-2878-4d97-b42d-4933e021297e)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/8d7ee247-d9fb-43fa-ba8d-1a70d616b58b)
+
+
+
