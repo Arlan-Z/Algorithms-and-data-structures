@@ -424,7 +424,21 @@ int findWidth(TreeNode* root) {
 
     return maxWidth;
 }
+int findWidthRecurs(TreeNode* root) {
+    if (root == nullptr) {
+        return 0;
+    }
 
+    int maxWidth = 0;
+    int height = getHeight(root);
+
+    for (int level = 1; level <= height; level++) {
+        int width = getWidth(root, level);
+        maxWidth = max(maxWidth, width);
+    }
+
+    return maxWidth;
+}
 int main() {
     // Создаем простое бинарное дерево
     TreeNode* root = new TreeNode(1);
