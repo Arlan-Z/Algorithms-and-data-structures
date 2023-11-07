@@ -653,3 +653,7 @@ int main() {
           cad
 
 Найдено вхождение на позиции 7
+
+
+**Для лучшего понимания**
+https://www.youtube.com/watch?v=S-LXeuHGF98
