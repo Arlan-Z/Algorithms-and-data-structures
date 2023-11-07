@@ -1,4 +1,4 @@
-# Heap
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/2e83358a-bfbe-46c3-9d95-fc818c20d64a)# Heap
 ![Your connection is in bug trouble](image.png)
 ## Max-куча
 В этой куче значение корневого узла должно быть наибольшим среди всех его
@@ -240,6 +240,13 @@ int main() {
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/eea66d54-f20e-4e75-9332-189166e44d6d)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/a5b1fe44-3ab7-4fc3-b4ba-b819c7c9ad3d)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/2fbae2b9-8fff-4d6b-ba16-6f940b9c7c73)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/e8f04434-5be1-44c3-aa8f-d5399ff9db3a)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/ebe440e9-58d9-4eeb-9299-b17b15258039)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/6dc828c4-84d6-4e4e-be53-80e26f750e8a)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/588286a8-ece6-4f0d-ae25-e88d5261c87a)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/5aaf4123-7c76-412d-babb-36c6c4ad75e5)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/d3d91499-5236-42ac-8ca1-ed34bfb9230b)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/e55b063a-d6a9-4a48-a98c-49c04e091388)
 
 
 [Для лучшего понимания](https://youtu.be/2DmK_H7IdTo?si=FhSI7DzOYDbFtZw_)
