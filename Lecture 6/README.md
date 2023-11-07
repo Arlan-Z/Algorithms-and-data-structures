@@ -483,4 +483,14 @@ int main() {
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/8d7ee247-d9fb-43fa-ba8d-1a70d616b58b)
 
 
+ширина:
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/663d10ad-c865-43e3-9cd3-5c948c88ff08)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/902ec715-76e5-40c4-b631-dd85552c77f6)
+
+подфункция ширины getWidth
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/c7568858-f297-4006-acef-c9d61d88d61d)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/7b7cf440-211f-4ef5-bfd9-2db9b979706b)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/277d7328-fe16-4e9d-92a6-cfc6a085e5fe)
+
+
 
