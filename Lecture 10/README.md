@@ -82,3 +82,184 @@ function main()
    - При коллизии, алгоритм использует вторую хеш-функцию для вычисления новой ячейки для элемента.
    - Этот метод помогает разрешить коллизии без слияния элементов в одном месте, но требует правильного выбора второй хеш-функции.
 
+
+**Использование хэш таблицы на cpp где элементы это строки**
+```c++
+#include <iostream>
+#include <unordered_map>
+#include <string>
+using namespace std;
+
+int main() {
+    // Создаем хеш-таблицу для хранения строк (ключей) и их значений
+    unordered_map<string, string> hashMap;
+
+    // Вставляем элементы в хеш-таблицу
+    hashMap["apple"] = "A sweet fruit";
+    hashMap["banana"] = "A tropical fruit";
+    hashMap["cherry"] = "A small, red fruit";
+
+    // Получаем значения по ключам
+    string key = "apple";
+    if (hashMap.find(key) != hashMap.end()) {
+        cout << "Значение для ключа '" << key << "': " << hashMap[key] << endl;
+    } else {
+        cout << "Ключ '" << key << "' не найден." << endl;
+    }
+
+    key = "grape";
+    if (hashMap.find(key) != hashMap.end()) {
+        cout << "Значение для ключа '" << key << "': " << hashMap[key] << endl;
+    } else {
+        cout << "Ключ '" << key << "' не найден." << endl;
+    }
+
+    return 0;
+}
+
+```
+**Хэш таблица написанная без библиотеки**
+```c++
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Простая хеш-функция, которая возвращает сумму кодов символов ключа
+int simpleHash(const string& key, int tableSize) {
+    int hash = 0;
+    for (char ch : key) {
+        hash += static_cast<int>(ch);
+    }
+    return hash % tableSize;
+}
+
+int main() {
+    const int tableSize = 100;
+    vector<pair<string, string>> hashTable[tableSize];
+
+    // Вставляем элементы в хеш-таблицу
+    hashTable[simpleHash("apple", tableSize)].emplace_back("apple", "A sweet fruit");
+    hashTable[simpleHash("banana", tableSize)].emplace_back("banana", "A tropical fruit");
+    hashTable[simpleHash("cherry", tableSize)].emplace_back("cherry", "A small, red fruit");
+
+    // Получаем значение по ключу
+    string key = "apple";
+    int index = simpleHash(key, tableSize);
+    string value = "Key not found";
+
+    for (const auto& entry : hashTable[index]) {
+        if (entry.first == key) {
+            value = entry.second;
+            break;
+        }
+    }
+
+    cout << "Value for 'apple': " << value << endl;
+
+    key = "grape";
+    index = simpleHash(key, tableSize);
+    value = "Key not found";
+
+    for (const auto& entry : hashTable[index]) {
+        if (entry.first == key) {
+            value = entry.second;
+            break;
+        }
+    }
+
+    cout << "Value for 'grape': " << value << endl;
+
+    return 0;
+}
+
+```
+
+без встроенной функции static_cast<int> :
+
+```c++
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Простая хеш-функция, которая возвращает сумму кодов символов ключа
+int simpleHash(const string& key, int tableSize) {
+    int hash = 0;
+    for (char ch : key) {
+        hash += ch;
+    }
+    return hash % tableSize;
+}
+
+int main() {
+    const int tableSize = 100;
+    vector<pair<string, string>> hashTable[tableSize];
+
+    // Вставляем элементы в хеш-таблицу
+    hashTable[simpleHash("apple", tableSize)].emplace_back("apple", "A sweet fruit");
+    hashTable[simpleHash("banana", tableSize)].emplace_back("banana", "A tropical fruit");
+    hashTable[simpleHash("cherry", tableSize)].emplace_back("cherry", "A small, red fruit");
+
+    // Получаем значение по ключу
+    string key = "apple";
+    int index = simpleHash(key, tableSize);
+    string value = "Key not found";
+
+    for (const auto& entry : hashTable[index]) {
+        if (entry.first == key) {
+            value = entry.second;
+            break;
+        }
+    }
+
+    cout << "Value for 'apple': " << value << endl;
+
+    key = "grape";
+    index = simpleHash(key, tableSize);
+    value = "Key not found";
+
+    for (const auto& entry : hashTable[index]) {
+        if (entry.first == key) {
+            value = entry.second;
+            break;
+        }
+    }
+
+    cout << "Value for 'grape': " << value << endl;
+
+    return 0;
+}
+```
+
+**Хэш функция которая выдает именно индекс в массиве и не превышает его размер**
+```c++
+int customHash(const string& key, int tableSize) {
+    int hash = 0;
+    int prime = 31;  // Простое число для улучшения равномерного распределения хешей 
+
+    for (char ch : key) {
+        hash = (hash * prime + static_cast<int>(ch)) % tableSize;
+    }
+    
+    return hash;
+}
+```
+
+без встроенной функции static_cast<int> :
+
+```c++
+int customHash(const string& key, int tableSize) {
+    int hash = 0;
+    int prime = 31;
+
+    for (char ch : key) {
+        hash = (hash * prime + ch) % tableSize;
+    }
+    
+    return hash;
+}
+
+```
