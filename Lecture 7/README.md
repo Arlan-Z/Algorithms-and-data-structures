@@ -232,6 +232,16 @@ int main() {
 Начиная с последнего уровня и двигаясь вверх, мы начинаем с узлов, которые
 имеют дочерние элементы.
 
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/a77fc168-d5be-4d69-9240-01f2054cb5bd)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/e77d13fe-9e95-4fe7-83f9-6ee2c2f2f6a7)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/a6bf62ee-c07b-4e00-b29e-ec9592bfb516)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/2521cdf1-94cd-44ff-8b3f-f13b95036267)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/dfae12c5-98ed-4bc0-9954-3c769b759af0)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/b27cd3da-dad8-4752-bd20-e9dbd459a6ad)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/a5b1fe44-3ab7-4fc3-b4ba-b819c7c9ad3d)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/2fbae2b9-8fff-4d6b-ba16-6f940b9c7c73)
+
+
 [Для лучшего понимания](https://youtu.be/2DmK_H7IdTo?si=FhSI7DzOYDbFtZw_)
 
 
