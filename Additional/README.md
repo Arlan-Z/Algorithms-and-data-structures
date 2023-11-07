@@ -17,6 +17,116 @@
 
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/702c8f52-2098-466a-bb11-c3430aea831a)
 
+
+```c++
+#include <iostream>
+#include <string>
+#include <map>
+#include <queue>
+
+struct HuffmanNode {
+    char data;
+    int frequency;
+    HuffmanNode* left;
+    HuffmanNode* right;
+
+    HuffmanNode(char data, int frequency) : data(data), frequency(frequency), left(nullptr), right(nullptr) {}
+};
+
+struct CompareNodes {
+    bool operator()(HuffmanNode* a, HuffmanNode* b) {
+        return a->frequency > b->frequency;
+    }
+};
+
+HuffmanNode* buildHuffmanTree(const std::map<char, int>& frequencies) {
+    std::priority_queue<HuffmanNode*, std::vector<HuffmanNode*>, CompareNodes> minHeap;
+
+    for (const auto& entry : frequencies) {
+        minHeap.push(new HuffmanNode(entry.first, entry.second));
+    }
+
+    while (minHeap.size() > 1) {
+        HuffmanNode* left = minHeap.top();
+        minHeap.pop();
+
+        HuffmanNode* right = minHeap.top();
+        minHeap.pop();
+
+        HuffmanNode* parent = new HuffmanNode('\0', left->frequency + right->frequency);
+        parent->left = left;
+        parent->right = right;
+        minHeap.push(parent);
+    }
+
+    return minHeap.top();
+}
+
+void buildHuffmanCodes(HuffmanNode* root, const std::string& code, std::map<char, std::string>& huffmanCodes) {
+    if (root == nullptr) {
+        return;
+    }
+
+    if (root->data != '\0') {
+        huffmanCodes[root->data] = code;
+    }
+
+    buildHuffmanCodes(root->left, code + "0", huffmanCodes);
+    buildHuffmanCodes(root->right, code + "1", huffmanCodes);
+}
+
+std::string encodeMessage(const std::map<char, std::string>& huffmanCodes, const std::string& message) {
+    std::string encodedMessage = "";
+    for (char c : message) {
+        encodedMessage += huffmanCodes.at(c);
+    }
+    return encodedMessage;
+}
+
+std::string decodeMessage(HuffmanNode* root, const std::string& encodedMessage) {
+    std::string decodedMessage = "";
+    HuffmanNode* current = root;
+
+    for (char bit : encodedMessage) {
+        if (bit == '0') {
+            current = current->left;
+        } else {
+            current = current->right;
+        }
+
+        if (current->data != '\0') {
+            decodedMessage += current->data;
+            current = root;
+        }
+    }
+
+    return decodedMessage;
+}
+
+int main() {
+    std::map<char, int> frequencies;
+    std::string message = "hello, world!";
+
+    for (char c : message) {
+        frequencies[c]++;
+    }
+
+    HuffmanNode* root = buildHuffmanTree(frequencies);
+    std::map<char, std::string> huffmanCodes;
+    buildHuffmanCodes(root, "", huffmanCodes);
+
+    std::string encodedMessage = encodeMessage(huffmanCodes, message);
+    std::string decodedMessage = decodeMessage(root, encodedMessage);
+
+    std::cout << "Исходное сообщение: " << message << std::endl;
+    std::cout << "Закодированное сообщение: " << encodedMessage << std::endl;
+    std::cout << "Декодированное сообщение: " << decodedMessage << std::endl;
+
+    return 0;
+}
+
+```
+
 ## подробное объяснение:
 
 https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
