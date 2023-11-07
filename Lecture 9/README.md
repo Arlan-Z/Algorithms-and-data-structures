@@ -70,3 +70,4 @@ void msort(int arr[],int l,int r){
 
 Пространственная:  O(N)
 
+для лучшего понимания: https://www.youtube.com/watch?v=3j0SWDX4AtU
