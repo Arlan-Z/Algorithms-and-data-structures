@@ -248,6 +248,15 @@ int main() {
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/d3d91499-5236-42ac-8ca1-ed34bfb9230b)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/e55b063a-d6a9-4a48-a98c-49c04e091388)
 
+** Сложность: **
+
+Временная:
+
+O(N*log2(N))
+
+Пространственная:
+
+O(1)
 
 [Для лучшего понимания](https://youtu.be/2DmK_H7IdTo?si=FhSI7DzOYDbFtZw_)
 
