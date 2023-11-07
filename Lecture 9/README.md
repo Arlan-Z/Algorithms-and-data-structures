@@ -52,7 +52,7 @@ void msort(int arr[],int l,int r){
 
 ```
 
-
+![image1](orig.gif)
 
 ** Сложность **
 
