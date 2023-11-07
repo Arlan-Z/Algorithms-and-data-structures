@@ -424,6 +424,17 @@ int findWidth(TreeNode* root) {
 
     return maxWidth;
 }
+int getWidth(TreeNode* root, int level) {
+    if (root == nullptr) {
+        return 0;
+    }
+    if (level == 1) {
+        return 1;
+    } else if (level > 1) {
+        return getWidth(root->left, level - 1) + getWidth(root->right, level - 1);
+    }
+    return 0;
+}
 int findWidthRecurs(TreeNode* root) {
     if (root == nullptr) {
         return 0;
