@@ -303,58 +303,6 @@ Output
 Временная сложность: **O(h)**, где **h** - высота BST (*Binary Search Tree*).
 Вспомогательное пространство: **O(h)v**, где **h** - высота BST. Это связано с тем, что максимальный
 объем пространства, необходимый для хранения стека рекурсии, будет равен **h**.
-### Диаметр бинарного дерева
-*Диаметр бинарного дерева* - это наибольшее количество рёбер между двумя узлами дерева. Другими словами, это самый длинный путь от одного узла до другого.
-  
-**Алгоритм вычисления:**  
-1. Рекурсивно вычислите глубину каждого узла.  
-2. Для каждого узла, диаметр равен сумме глубин его двух поддеревьев (левое + правое).
-3. Отслеживайте и обновляйте максимальное значение диаметра на протяжении всего обхода.
-
-![Diam](Diameter.png)
-
-**Реализация**
-```c++
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
-class BinaryTree {
-    int max_diameter = 0;
-
-    int depth(TreeNode* node) {
-        if (!node) return 0;
-
-        int left_depth = depth(node->left);
-        int right_depth = depth(node->right);
-
-        // Обновляем максимальный диаметр
-        max_diameter = max(max_diameter, left_depth + right_depth);
-
-        return 1 + max(left_depth, right_depth);
-    }
-
-public:
-    int diameter(TreeNode* root) {
-        depth(root);
-        return max_diameter;
-    }
-};
-```
-Данный алгоритм эффективно вычисляет диаметр бинарного дерева с временной сложностью **O(n)**, где **n** - количество узлов в дереве, так как каждый узел 
-посещается ровно один раз.
-
-![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/218d3f38-7db8-40f9-bc8b-3aa13fb37804)
-![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/01ff2cba-6883-4c63-8813-462fb40896ce)
-![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/9cd28949-a78c-4b3a-82dd-c13339bf6f34)
-![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/32e2afd3-503b-41c3-90a8-1adc93d4d820)
-![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/974be5d8-1a0c-4d90-9407-6cde1f0d5755)
-
-
-
 
 
 ## Нахождение количества узлов , ширину и высоту в бинарном дерева
@@ -493,4 +441,53 @@ int main() {
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/277d7328-fe16-4e9d-92a6-cfc6a085e5fe)
 
 
+### Диаметр бинарного дерева
+*Диаметр бинарного дерева* - это наибольшее количество рёбер между двумя узлами дерева. Другими словами, это самый длинный путь от одного узла до другого.
+  
+**Алгоритм вычисления:**  
+1. Рекурсивно вычислите глубину каждого узла.  
+2. Для каждого узла, диаметр равен сумме глубин его двух поддеревьев (левое + правое).
+3. Отслеживайте и обновляйте максимальное значение диаметра на протяжении всего обхода.
+
+![Diam](Diameter.png)
+
+**Реализация**
+```c++
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+class BinaryTree {
+    int max_diameter = 0;
+
+    int depth(TreeNode* node) {
+        if (!node) return 0;
+
+        int left_depth = depth(node->left);
+        int right_depth = depth(node->right);
+
+        // Обновляем максимальный диаметр
+        max_diameter = max(max_diameter, left_depth + right_depth);
+
+        return 1 + max(left_depth, right_depth);
+    }
+
+public:
+    int diameter(TreeNode* root) {
+        depth(root);
+        return max_diameter;
+    }
+};
+```
+Данный алгоритм эффективно вычисляет диаметр бинарного дерева с временной сложностью **O(n)**, где **n** - количество узлов в дереве, так как каждый узел 
+посещается ровно один раз.
+
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/218d3f38-7db8-40f9-bc8b-3aa13fb37804)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/01ff2cba-6883-4c63-8813-462fb40896ce)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/9cd28949-a78c-4b3a-82dd-c13339bf6f34)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/32e2afd3-503b-41c3-90a8-1adc93d4d820)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/974be5d8-1a0c-4d90-9407-6cde1f0d5755)
 
