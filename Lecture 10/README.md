@@ -535,11 +535,12 @@ unsigned int hash(const string& str, int start, int length) {
 void RabinKarpSearch(const string& text, const string& pattern) {
     int textLength = text.length();
     int patternLength = pattern.length();
-    unsigned int patternHash = hash(pattern, 0, patternLength);
-    unsigned int textHash = hash(text, 0, patternLength);
+    unsigned int patternHash = hash(pattern, 0, patternLength); // Хеш-значение подстроки
+    unsigned int textHash = hash(text, 0, patternLength); // Хеш-значение первого окна текста
 
     for (int i = 0; i <= textLength - patternLength; i++) {
         if (textHash == patternHash) {
+            // Хеш-значения совпадают, проверяем совпадение символов подстроки и окна
             bool match = true;
             for (int j = 0; j < patternLength; j++) {
                 if (text[i + j] != pattern[j]) {
@@ -552,6 +553,7 @@ void RabinKarpSearch(const string& text, const string& pattern) {
             }
         }
 
+        // Сдвиг окна: вычитаем старый символ, который уходит из окна, и добавляем новый символ
         if (i < textLength - patternLength) {
             textHash = (textHash - text[i] * (256 << (patternLength - 1))) * 256 + text[i + patternLength];
         }
@@ -559,9 +561,10 @@ void RabinKarpSearch(const string& text, const string& pattern) {
 }
 
 int main() {
-    string text = "abracadabra";
-    string pattern = "cad";
-    RabinKarpSearch(text, pattern);
+    string text = "abracadabra"; // Текст, в котором ищем подстроку
+    string pattern = "cad"; // Подстрока, которую ищем
+    RabinKarpSearch(text, pattern); // Запуск алгоритма
     return 0;
 }
+
 ```
