@@ -62,7 +62,7 @@ int main() {
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/1263b69a-76cd-488c-b1fb-403682008b0d)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/d868df91-88a1-46d3-bd1c-ff3d51ec2dcd)
 
-** сложность алгоритма: **
+**сложность алгоритма:**
 Временная:
 
 В среднем:
