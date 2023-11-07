@@ -538,6 +538,7 @@ void RabinKarpSearch(const string& text, const string& pattern) {
     unsigned int patternHash = hash(pattern, 0, patternLength); // Хеш-значение подстроки
     unsigned int textHash = hash(text, 0, patternLength); // Хеш-значение первого окна текста
 
+    // Проходимся по всем возможным окнам текста для поиска подстроки
     for (int i = 0; i <= textLength - patternLength; i++) {
         if (textHash == patternHash) {
             // Хеш-значения совпадают, проверяем совпадение символов подстроки и окна
@@ -566,5 +567,4 @@ int main() {
     RabinKarpSearch(text, pattern); // Запуск алгоритма
     return 0;
 }
-
 ```
