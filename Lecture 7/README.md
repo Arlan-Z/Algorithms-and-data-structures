@@ -258,6 +258,24 @@ O(N*log2(N))
 
 O(1)
 
+**Extract min**
+выводим верхний элемент, удаляя его и heapify после удаления.
+```c++
+ int ExtractMin() {
+    if (size <= 0)
+      return INT_MAX;
+    if (size == 1) {
+      size--;
+      return arr[0];
+    }
+    int mini = arr[0];
+    arr[0] = arr[size - 1]; 
+    size--;
+    minHeapify(0); 
+    return mini;
+  }
+```
+
 [Для лучшего понимания](https://youtu.be/2DmK_H7IdTo?si=FhSI7DzOYDbFtZw_)
 
 
