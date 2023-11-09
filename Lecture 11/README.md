@@ -7,7 +7,7 @@
 using namespace std;
 
 // Функция для построения префикс-функции
-vector<int> computePrefixFunction(const string& pattern) {
+vector<int> computePrefixFunction(const string& pattern) { 
     int m = pattern.length();
     vector<int> prefix(m, 0);
     int j = 0;
