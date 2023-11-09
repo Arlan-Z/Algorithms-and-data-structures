@@ -637,7 +637,7 @@ unsigned int phash(const string& s, int start, int length, int x, int q) { // П
     return res;
 }
 
-void RabinKarpSearch(const string& pattern, const string& text, int x, int q) {
+void RabinKarpSearch(const string& text, const string& pattern,  int x, int q) {
     int m = pattern.length();
     int n = text.length();
 
