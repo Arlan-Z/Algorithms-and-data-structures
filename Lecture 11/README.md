@@ -196,4 +196,5 @@ int main() {
     - Если символы не совпадают, обновляем индекс `j` с использованием префикс-функции.
 
 для лучшего понимания:
+https://www.youtube.com/watch?v=2ogqPWJSftE
 https://www.youtube.com/watch?v=kBW6oPaVjq0
