@@ -1,7 +1,7 @@
 ## Алгоритм  Кнута Морриса-Пратта по поиску под строки
 
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/b4959428-0ef9-4a08-a5ea-d6c5d99377fe)
 
-![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/40024935-c0cd-47fd-b6d3-3e2a8fc8e0d3)
 
 
 ```c++
