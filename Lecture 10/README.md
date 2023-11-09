@@ -588,7 +588,7 @@ void RabinKarpSearch(const string& text, const string& pattern) {
         }
 
         // Сдвиг окна: вычитаем старый символ, который уходит из окна, и добавляем новый символ
-        if (i < textLength - patternLength) {
+        if (i != textLength - patternLength) {
             textHash = (textHash - text[i] * (256 << (patternLength - 1))) * 256 + text[i + patternLength];
         }
     }
