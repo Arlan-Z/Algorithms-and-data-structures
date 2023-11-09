@@ -602,6 +602,64 @@ int main() {
 }
 ```
 
+**C использованием Полиномиальной хэш функции:**
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+unsigned int phash(const string& s, int start, int length, int x, int q) { // Полиномиальная хэш функция
+    unsigned int res = 0;
+    for (int i = start; i < start + length; i++) {
+        res = (res * x + int(s[i])) % q;
+    }
+    return res;
+}
+
+void RabinKarpSearch(const string& pattern, const string& text, int x, int q) {
+    int m = pattern.length();
+    int n = text.length();
+
+    // Вычисляем хэш для шаблона
+    unsigned int patternHash = phash(pattern, 0, m, x, q);
+
+    // Вычисляем хэш для первого окна текста
+    unsigned int textHash = phash(text, 0, m, x, q);
+
+    // Проходим по тексту с использованием сдвига окна
+    for (int i = 0; i <= n - m; i++) {
+        // Если хэши совпадают, проверяем символы посимвольно
+        if (patternHash == textHash) {
+            bool match = true;
+            for (int j = 0; j < m; j++) { // дополнительная проверка
+                if (pattern[j] != text[i + j]) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match) {
+                cout << "Pattern found at index " << i << endl;
+            }
+        }
+
+        //Сдвиг окна: вычитаем старый символ, который уходит из окна, и добавляем новый символ при сдвиге окна в перед появляется один новый
+        if (i < n - m) {
+            textHash = ((textHash - int(text[i]) * pow(x, m - 1, q)) * x + int(text[i + m])) % q; 
+            if (textHash < 0) {
+                textHash += q;
+            }
+        }
+    }
+}
+
+int main() {
+    string text = "abracadabra"; // Текст, в котором ищем подстроку
+    string pattern = "cad"; // Подстрока, которую ищем
+    RabinKarpSearch(text, pattern); // Запуск алгоритма
+    return 0;
+}
+```
 
 Текст: "abracadabra"
 Подстрока: "cad"
