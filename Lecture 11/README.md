@@ -1,5 +1,9 @@
 ## Алгоритм  Кнута Морриса-Пратта по поиску под строки
 
+
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/40024935-c0cd-47fd-b6d3-3e2a8fc8e0d3)
+
+
 ```c++
 #include <iostream>
 #include <vector>
@@ -197,4 +201,5 @@ int main() {
 
 для лучшего понимания:
 https://www.youtube.com/watch?v=2ogqPWJSftE
+https://www.youtube.com/watch?v=4jY57Ehc14Y
 https://www.youtube.com/watch?v=kBW6oPaVjq0
