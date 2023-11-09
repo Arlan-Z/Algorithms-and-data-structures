@@ -626,26 +626,26 @@ textHash=(textHash*x−charAt(i - m + 1)*x^(m−1) +charAt(i + 1))mod q
 ```c++
 #include <iostream>
 #include <string>
-
+#include <cmath>
 using namespace std;
 
-unsigned int phash(const string& s, int start, int length, int x, int q) { // Полиномиальная хэш функция
-    unsigned int res = 0;
+int phash(const string& s, int start, int length, int x, int q) { // Полиномиальная хэш функция
+    int res = 0;
     for (int i = start; i < start + length; i++) {
         res = (res * x + int(s[i])) % q;
     }
     return res;
 }
 
-void RabinKarpSearch(const string& text, const string& pattern,  int x, int q) {
+void RabinKarpSearch(const string& text, const string& pattern, int x = 256, int q = 31) {
     int m = pattern.length();
     int n = text.length();
 
     // Вычисляем хэш для шаблона
-    unsigned int patternHash = phash(pattern, 0, m, x, q);
+    int patternHash = phash(pattern, 0, m, x, q);
 
     // Вычисляем хэш для первого окна текста
-    unsigned int textHash = phash(text, 0, m, x, q);
+    int textHash = phash(text, 0, m, x, q);
 
     // Проходим по тексту с использованием сдвига окна
     for (int i = 0; i <= n - m; i++) {
@@ -665,7 +665,7 @@ void RabinKarpSearch(const string& text, const string& pattern,  int x, int q) {
 
         //Сдвиг окна: вычитаем старый символ, который уходит из окна, и добавляем новый символ при сдвиге окна в перед появляется один новый
         if (i < n - m) { // условие чтобы хэш не вышел за пределы так как он берет i+m то есть он может выйти за границы
-            textHash = ((textHash - int(text[i]) * pow(x, m - 1, q)) * x + int(text[i + m])) % q; // (textHash - int(text[i]) * pow(x, m - 1, q)) * x отнимаем последний элемент в старом оке который исчезает при сдвиге и + int(text[i + m]) добавляем новый элемент , который появляется при сдвиге
+            textHash = ((textHash - int(text[i]) *static_cast<int>(pow(x, m - 1))) * x + int(text[i + m])) % q; // (textHash - int(text[i]) * pow(x, m - 1, q)) * x отнимаем последний элемент в старом оке который исчезает при сдвиге домножая все на x для сдвига в верх и + int(text[i + m]) добавляем новый элемент , который появляется при сдвиге
             if (textHash < 0) {
                 textHash += q;
             }
@@ -680,53 +680,6 @@ int main() {
     return 0;
 }
 ```
-
-Текст: "abracadabra"
-Подстрока: "cad"
-
-1. Начальное окно:
-   - Текущее окно: "abr"
-   - Хеш текста: hash("abr") = 970353
-   - Хеш подстроки: hash("cad") = 975369
-   - Нет совпадения, продолжаем.
-
-2. Сдвиг окна на один символ вправо:
-   - Текущее окно: "bra"
-   - Хеш текста: hash("bra") = 1001562
-   - Хеш подстроки: hash("cad") = 975369
-   - Нет совпадения, продолжаем.
-
-3. Сдвиг окна:
-   - Текущее окно: "rac"
-   - Хеш текста: hash("rac") = 1003658
-   - Хеш подстроки: hash("cad") = 975369
-   - Нет совпадения, продолжаем.
-
-4. Сдвиг окна:
-   - Текущее окно: "aca"
-   - Хеш текста: hash("aca") = 993705
-   - Хеш подстроки: hash("cad") = 975369
-   - Нет совпадения, продолжаем.
-
-5. Сдвиг окна:
-   - Текущее окно: "cad"
-   - Хеш текста: hash("cad") = 975369
-   - Хеш подстроки: hash("cad") = 975369
-   - Хеш-значения совпадают, и символы совпадают.
-   - Выводим "Найдено вхождение на позиции 7".
-
-6. Пропускаем окно:
-   - Текущее окно: "ada"
-   - Алгоритм пропускает это окно, так как хеш-значение не совпадает с хешем подстроки.
-
-7. Пропускаем окно:
-   - Текущее окно: "dab"
-   - Алгоритм также пропускает это окно, так как хеш-значение не совпадает.
-     
-Найдено вхождение на позиции 7
-
-**На полиномиальной хэш функции**
-
 
 **Для лучшего понимания**
 https://www.youtube.com/watch?v=S-LXeuHGF98
