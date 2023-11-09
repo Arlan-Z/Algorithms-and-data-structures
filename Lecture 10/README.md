@@ -603,6 +603,10 @@ int main() {
 ```
 
 **C использованием Полиномиальной хэш функции:**
+при функции:
+textHash=(textHash*x−s[i−m+1]*x^(m−1) +s[i+1])mod q
+сдвиг для полиномиальной хэш функции будет по формуле :
+textHash=(textHash*x−charAt(i - m + 1)*x^(m−1) +charAt(i + 1))mod q
 ```c++
 #include <iostream>
 #include <string>
