@@ -644,8 +644,8 @@ void RabinKarpSearch(const string& pattern, const string& text, int x, int q) {
         }
 
         //Сдвиг окна: вычитаем старый символ, который уходит из окна, и добавляем новый символ при сдвиге окна в перед появляется один новый
-        if (i < n - m) {
-            textHash = ((textHash - int(text[i]) * pow(x, m - 1, q)) * x + int(text[i + m])) % q; 
+        if (i < n - m) { // условие чтобы хэш не вышел за пределы так как он берет i+m то есть он может выйти за границы
+            textHash = ((textHash - int(text[i]) * pow(x, m - 1, q)) * x + int(text[i + m])) % q; // (textHash - int(text[i]) * pow(x, m - 1, q)) * x отнимаем последний элемент в старом оке который исчезает при сдвиге и + int(text[i + m]) добавляем новый элемент , который появляется при сдвиге
             if (textHash < 0) {
                 textHash += q;
             }
