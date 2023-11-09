@@ -552,61 +552,6 @@ int main(){
 
 Преимущество этого метода заключается в том, что мы пересчитываем хеш-значение только частично, а не полностью для каждого окна. Это позволяет сократить количество вычислений и ускорить поиск подстроки в тексте.
 
-
-
-```c++
-#include <iostream>
-#include <string>
-
-using namespace std;
-
-// Функция для вычисления хеш-значения подстроки
-unsigned int hash(const string& str, int start, int length) {
-    unsigned int result = 0;
-    for (int i = start; i < start + length; i++) {
-        result = result * 256 + str[i]; // Простой способ хеширования
-    }
-    return result;
-}
-
-// Функция для поиска всех вхождений подстроки в тексте
-void RabinKarpSearch(const string& text, const string& pattern) {
-    int textLength = text.length();
-    int patternLength = pattern.length();
-    unsigned int patternHash = hash(pattern, 0, patternLength); // Хеш-значение подстроки
-    unsigned int textHash = hash(text, 0, patternLength); // Хеш-значение первого окна текста
-
-    // Проходимся по всем возможным окнам текста для поиска подстроки
-    for (int i = 0; i <= textLength - patternLength; i++) {
-        if (textHash == patternHash) {
-            // Хеш-значения совпадают, проверяем совпадение символов подстроки и окна
-            bool match = true;
-            for (int j = 0; j < patternLength; j++) {
-                if (text[i + j] != pattern[j]) {
-                    match = false;
-                    break;
-                }
-            }
-            if (match) {
-                cout << "Найдено вхождение на позиции " << i << endl;
-            }
-        }
-
-        // Сдвиг окна: вычитаем старый символ, который уходит из окна, и добавляем новый символ
-        if (i != textLength - patternLength) {
-            textHash = (textHash - text[i] * (256 << (patternLength - 1))) * 256 + text[i + patternLength];
-        }
-    }
-}
-
-int main() {
-    string text = "abracadabra"; // Текст, в котором ищем подстроку
-    string pattern = "cad"; // Подстрока, которую ищем
-    RabinKarpSearch(text, pattern); // Запуск алгоритма
-    return 0;
-}
-```
-
 **C использованием Полиномиальной хэш функции:**
 при хэш функции: 
 
@@ -618,7 +563,7 @@ h = (s[0]*x^(n-1)+s[1]*x^(n-2)+s[2]*x^(n-3)+.....+s[n-2]*x+s[n-1])%q
 
 тогда это можно вырозить так h = ((h-s[0]*x^(n-1))*x + s[n])%q
 
-с учетом прошлого кода сдвиг для полиномиальной хэш функции будет по формуле :
+тогда если окно то есть под строка которая в тексте будет длинной m то хэш под строки будет : 
 
 textHash=(textHash*x−charAt(i - m + 1)*x^(m−1) +charAt(i + 1))mod q
 
