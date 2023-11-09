@@ -334,7 +334,7 @@ int main(){
 
 Более производительная версия с тем же результатом:
 так как hash(s) = (s[0]*x^(n-1)+s[1]*x^(n-2)+s[2]*x^(n-3)+.....+s[n-2]*x+s[n-2])%q
-это тоже самое что hash = (hash * x + int(s[i])) % q;
+это тоже самое что hash = (hash * x + int(s[i])) % q в for(int i=0;i<n;i++);
 
 ```c++
 int phash(string s, int x=2, int q=100000) {
