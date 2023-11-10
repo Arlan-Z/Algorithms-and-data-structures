@@ -1,11 +1,11 @@
 ## Алгоритм  Кнута Морриса-Пратта по поиску под строки
 
+Его временная сложность O(n)
+
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/b4959428-0ef9-4a08-a5ea-d6c5d99377fe)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/1724aa42-7ca3-484f-8915-33ed2d50930e)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/07a574c5-1fbe-4ca5-905f-ada890cf62a1)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/d434bb89-a34d-4067-8c5a-376415e1e5f1)
-
-
 
 
 ```c++
