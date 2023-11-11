@@ -139,4 +139,51 @@ int main() {
 
 ## Edge list
 
+```c++
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Edge {
+public:
+    int source, destination, weight;
+
+    Edge(int src, int dest, int w) : source(src), destination(dest), weight(w) {}
+};
+
+class EdgeList {
+private:
+    vector<Edge> edges;
+
+public:
+    EdgeList() {}
+
+    void addEdge(int src, int dest, int weight) {
+        Edge newEdge(src, dest, weight);
+        edges.push_back(newEdge);
+    }
+
+    void printEdgeList() {
+        for (const auto &edge : edges) {
+            cout << "Edge: " << edge.source << " -> " << edge.destination;
+            cout << " (Weight: " << edge.weight << ")\n";
+        }
+    }
+};
+
+int main() {
+    EdgeList edgeList;
+
+    edgeList.addEdge(0, 1, 5);
+    edgeList.addEdge(0, 2, 3);
+    edgeList.addEdge(1, 2, 1);
+    edgeList.addEdge(2, 3, 7);
+
+    edgeList.printEdgeList();
+
+    return 0;
+}
+```
+
 ## BFS
