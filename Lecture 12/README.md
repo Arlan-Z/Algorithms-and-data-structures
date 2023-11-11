@@ -160,8 +160,8 @@ public:
     EdgeList() {}
 
     void addEdge(int src, int dest, int weight) {
-        Edge newEdge(src, dest, weight);
-        edges.push_back(newEdge);
+        Edge ne(src, dest, weight);
+        edges.push_back(ne);
     }
 
     void printEdgeList() {
