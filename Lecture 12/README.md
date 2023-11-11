@@ -10,7 +10,7 @@ using namespace std;
 
 class Graph {
 private:
-    int vertices;
+    int vertices; // вершина
     vector<vector<int>> adjList;
 
 public:
