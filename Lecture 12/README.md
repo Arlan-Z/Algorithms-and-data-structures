@@ -65,9 +65,9 @@ int main() {
         adjList[w].push_back(v); 
     }
 ```
-
-для v добавить w
-для w добавить v
+при создании графа в нем будет V вершин , и не более V векторов или связанных списков 
+для v того вектора или связанного списка добавить w
+для w того вектора или связанного списка добавить v
 
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/9ebbff1c-d08e-4db1-87e5-e184fcd3ca25)
 
