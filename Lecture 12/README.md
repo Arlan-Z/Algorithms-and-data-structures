@@ -16,7 +16,7 @@ private:
 public:
     Graph(int V) : vertices(V), adjList(V) {}
     
-    void addEdge(int v, int w) {
+    void addEdge(int v, int w) { // добавить ребро
         adjList[v].push_back(w);
         adjList[w].push_back(v); // Uncomment for undirected graph
     }
