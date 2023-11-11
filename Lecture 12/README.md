@@ -1,5 +1,9 @@
 ## Adjacency list and matrix (Репрезентации матрицы 3 способа)
 
+Графы:
+
+https://rpruim.github.io/m252/S19/from-class/graphs/introduction-to-graphs.html
+
 
 **Adjacency list**
 
@@ -140,6 +144,9 @@ int main() {
 
 **Edge list**
 
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/73593be2-f2be-48b1-872d-6c98bceb261b)
+
+
 ```c++
 #include <iostream>
 #include <vector>
@@ -187,4 +194,13 @@ int main() {
 }
 ```
 
+доролнительная инормация :
+
+https://www.geeksforgeeks.org/comparison-between-adjacency-list-and-adjacency-matrix-representation-of-graph/
+
+
 ## BFS
+
+для понимания :
+
+https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
