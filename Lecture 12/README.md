@@ -57,7 +57,12 @@ int main() {
 
 ```
 
-для понимания : https://www.youtube.com/watch?v=ee6zIj4J3-Y
+для понимания : 
+
+https://www.youtube.com/watch?v=ee6zIj4J3-Y  
+
+https://www.youtube.com/watch?v=dhgKr8942rs
+
 
 **Adjacency matrix**
 
