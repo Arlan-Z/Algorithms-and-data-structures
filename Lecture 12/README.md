@@ -229,6 +229,33 @@ https://www.geeksforgeeks.org/comparison-between-adjacency-list-and-adjacency-ma
 
 Начнем мы с вершины “0”. В первую очередь алгоритм поиска в глубину поместит ее саму в список “Пройденные” (на изображении “Visited”), а ее смежные вершины — в стек.
 
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/849bb09c-2577-4b23-9d78-c19366368daa)
+
+Затем мы берем следующий элемент сверху стека, т.е. к вершину “1”, и переходим к ее соседним вершинам. Поскольку вершина “0” уже пройдена, следующая вершина “2”.
+
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/ed7903a2-68fa-404d-9988-73f08a8b28ef)
+
+Вершина “2” смежна непройденной вершине “4”, следовательно мы добавляем ее наверх стека и проходим ее.
+
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/94b8f819-df1f-45cd-8c6b-7b515b16ea0e)
+
+Вершина “2” смежна непройденной вершине “4”, следовательно мы помещаем ее в верх стека.
+
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/a1838058-db37-44e0-b17c-d9cdba122e89)
+
+Добавляем вершину “4” в список “Пройденные” после прохождения.
+
+После того, как мы пройдем последний элемент (вершину “3”), в стеке не останется непройденных смежных вершин, и таким образом мы завершили обход графа в глубину.
+
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/48adad7c-4eae-4d70-a7bd-4f99fe6a188f)
+
+После проверки всех смежных вершин для вершины “3” стек остался пустым, а значит алгоритм обхода графа в глубину завершил свою работу.
+
+
+
+
+
+
 для понимания :
 
 https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
