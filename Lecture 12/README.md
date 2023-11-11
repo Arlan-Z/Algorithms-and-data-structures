@@ -2,7 +2,7 @@
 
 **Adjacency list**
 
-![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/61975454-9761-4231-a090-8c992a75f078)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/72effdf3-cdc8-44aa-9c04-67048e93fad9)
 
 
 ```c++
