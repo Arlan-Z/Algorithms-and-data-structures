@@ -57,6 +57,21 @@ int main() {
 
 ```
 
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/32167ca5-3b71-41eb-b770-4095b2dfef3a)
+
+```c++
+    void addEdge(int v, int w) { 
+        adjList[v].push_back(w);
+        adjList[w].push_back(v); 
+    }
+```
+
+для v добавить w
+для w добавить v
+
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/9ebbff1c-d08e-4db1-87e5-e184fcd3ca25)
+
+
 для понимания : 
 
 https://www.youtube.com/watch?v=ee6zIj4J3-Y  
