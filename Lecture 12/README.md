@@ -114,6 +114,9 @@ int main() {
 
 
 ```
+
+для понимания: https://www.youtube.com/watch?v=B28xAWEerK8
+
 ## Edge list
 
 ## BFS
