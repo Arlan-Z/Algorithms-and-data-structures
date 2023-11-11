@@ -14,7 +14,7 @@ using namespace std;
 class Graph {
 private:
     int vertices;  // вершина
-    vector<vector<int>> adjList;
+    vector<vector<int>> adjList; // можно использовать vector<linked list<int>> ....
 
 public:
     Graph(int V) : vertices(V), adjList(V) {}
