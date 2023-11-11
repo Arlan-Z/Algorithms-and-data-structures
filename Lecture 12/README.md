@@ -1,8 +1,11 @@
 ## Adjacency list and matrix
 
 **Adjacency list**
-```c++
 
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/61975454-9761-4231-a090-8c992a75f078)
+
+
+```c++
 #include <iostream>
 #include <vector>
 
@@ -56,8 +59,10 @@ int main() {
 
 **Adjacency matrix**
 
-```c++
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/b715455f-7708-4d67-b277-a0474f55ac36)
 
+
+```c++
 #include <iostream>
 #include <vector>
 
