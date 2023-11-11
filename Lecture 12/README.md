@@ -57,6 +57,8 @@ int main() {
 
 ```
 
+для понимания : https://www.youtube.com/watch?v=ee6zIj4J3-Y
+
 **Adjacency matrix**
 
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/b715455f-7708-4d67-b277-a0474f55ac36)
