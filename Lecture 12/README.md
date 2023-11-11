@@ -1,4 +1,5 @@
-## Adjacency list and matrix
+## Adjacency list and matrix (Репрезентации матрицы 3 способа)
+
 
 **Adjacency list**
 
@@ -137,7 +138,7 @@ int main() {
 
 для понимания: https://www.youtube.com/watch?v=B28xAWEerK8
 
-## Edge list
+**Edge list**
 
 ```c++
 #include <iostream>
