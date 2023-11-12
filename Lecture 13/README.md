@@ -137,39 +137,6 @@ public:
 
         cout << endl;
     }
-
-    bool isCyclicUtil(int v, vector<bool>& visited, vector<bool>& recStack) { // функция для нахождения цикла в графе
-        if (!visited[v]) {
-            visited[v] = true;
-            recStack[v] = true;
-
-            for (int i = 0; i < vertices; ++i) {
-                if (adjMatrix[v][i] == 1) {
-                    if (!visited[i] && isCyclicUtil(i, visited, recStack)) {
-                        return true;
-                    } else if (recStack[i]) {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        recStack[v] = false;
-        return false;
-    }
-
-    bool isCyclic() {
-        vector<bool> visited(vertices, false);
-        vector<bool> recStack(vertices, false);
-
-        for (int i = 0; i < vertices; ++i) {
-            if (isCyclicUtil(i, visited, recStack)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
 };
 
 int main() {
@@ -247,6 +214,38 @@ public:
         }
 
         cout << endl;
+    }
+ bool isCyclicUtil(int v, vector<bool>& visited, vector<bool>& recStack) { // функция для нахождения цикла в графе
+        if (!visited[v]) {
+            visited[v] = true;
+            recStack[v] = true;
+
+            for (int i = 0; i < vertices; ++i) {
+                if (adjMatrix[v][i] == 1) {
+                    if (!visited[i] && isCyclicUtil(i, visited, recStack)) {
+                        return true;
+                    } else if (recStack[i]) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        recStack[v] = false;
+        return false;
+    }
+
+    bool isCyclic() {
+        vector<bool> visited(vertices, false);
+        vector<bool> recStack(vertices, false);
+
+        for (int i = 0; i < vertices; ++i) {
+            if (isCyclicUtil(i, visited, recStack)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 };
 
