@@ -356,7 +356,7 @@ int main() {
 
 ```
 
-
+![fs](dfs(1).gif)
 
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/1aace7dc-e99b-49d4-9949-2138bb5719ba)
 
