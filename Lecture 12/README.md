@@ -116,6 +116,27 @@ public:
             cout << endl;
         }
     }
+
+    void BFS(int startVertex) {
+        vector<bool> visited(vertices, false);
+        queue<int> queue;
+    
+        visited[startVertex] = true;
+        queue.push(startVertex);
+    
+        while (!queue.empty()) {
+            int currentVertex = queue.front();
+            cout << currentVertex << " ";
+            queue.pop();
+    
+            for (int adjacentVertex : adjacencyList[currentVertex]) {
+                if (!visited[adjacentVertex]) {
+                    visited[adjacentVertex] = true;
+                    queue.push(adjacentVertex);
+                }
+            }
+        }
+    }
 };
 
 int main() {
@@ -134,6 +155,7 @@ int main() {
     // Print adjacency matrix
     graph.printAdjMatrix();
 
+    graph.BFS(0);
     return 0;
 }
 
