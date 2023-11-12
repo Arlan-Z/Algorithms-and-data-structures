@@ -205,6 +205,7 @@ int main() {
 ```c++
 #include <iostream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -233,6 +234,30 @@ public:
             cout << " (Weight: " << edge.weight << ")\n";
         }
     }
+
+    vector<int> bfs(int startVertex) {
+        vector<int> visited(edges.size(), 0);
+        vector<int> result;
+
+        queue<int> q;
+        q.push(startVertex);
+        visited[startVertex] = 1;
+
+        while (!q.empty()) {
+            int currentVertex = q.front();
+            q.pop();
+            result.push_back(currentVertex);
+
+            for (const auto &edge : edges) {
+                if (edge.source == currentVertex && !visited[edge.destination]) {
+                    q.push(edge.destination);
+                    visited[edge.destination] = 1;
+                }
+            }
+        }
+
+        return result;
+    }
 };
 
 int main() {
@@ -243,10 +268,19 @@ int main() {
     edgeList.addEdge(1, 2, 1);
     edgeList.addEdge(2, 3, 7);
 
+    cout << "Edge List:\n";
     edgeList.printEdgeList();
+
+    cout << "\nBFS Traversal starting from vertex 0:\n";
+    vector<int> bfsResult = edgeList.bfs(0);
+
+    for (int vertex : bfsResult) {
+        cout << vertex << " ";
+    }
 
     return 0;
 }
+
 ```
 
 доролнительная инормация :
