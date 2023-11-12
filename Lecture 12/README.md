@@ -320,6 +320,7 @@ v начинает гореть, в точности равен длине её 
 
 
 
+
 для понимания :
 
 https://ru.algorithmica.org/cs/shortest-paths/bfs/
