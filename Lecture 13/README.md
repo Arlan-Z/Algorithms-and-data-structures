@@ -62,7 +62,115 @@
 
 Пространственная сложность BFS в худшем случае равна O(V), где V - количество вершин в графе. Это потому, что в худшем случае все вершины могут быть добавлены в очередь одновременно, что приведет к использованию памяти, пропорциональной числу вершин.
 
+Для AdjList
+```c++
+ 
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <stack>
+using namespace std;
 
+class Graph {
+private:
+    int vertices;
+    vector<vector<int>> adjList;
+
+public:
+    Graph(int V) : vertices(V), adjList(V) {}
+
+    void addEdge(int v, int w) {
+        adjList[v].push_back(w);
+        adjList[w].push_back(v);
+    }
+
+    void printAdjList() {
+        for (int i = 0; i < vertices; ++i) {
+            cout << "Adjacency list of vertex " << i << ": ";
+            for (const auto &neighbor : adjList[i]) {
+                cout << neighbor << " ";
+            }
+            cout << endl;
+        }
+    }
+
+    void BFS(int startVertex) {
+        vector<bool> visited(vertices, false);
+        queue<int> bfsQueue;
+
+        visited[startVertex] = true;
+        bfsQueue.push(startVertex);
+
+        cout << "BFS starting from vertex " << startVertex << ": ";
+
+        while (!bfsQueue.empty()) {
+            int currentVertex = bfsQueue.front();
+            bfsQueue.pop();
+
+            cout << currentVertex << " ";
+
+            for (const auto &neighbor : adjList[currentVertex]) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    bfsQueue.push(neighbor);
+                }
+            }
+        }
+        cout << endl;
+    }
+    
+    void DFS(int startVertex) {
+        vector<bool> visited(vertices, false);
+        stack<int> dfsStack;
+
+        visited[startVertex] = true;
+        dfsStack.push(startVertex);
+
+        cout << "DFS starting from vertex " << startVertex << ": ";
+
+        while (!dfsStack.empty()) {
+            int currentVertex = dfsStack.top();
+            dfsStack.pop();
+
+            cout << currentVertex << " ";
+
+            for (const auto &neighbor : adjList[currentVertex]) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    dfsStack.push(neighbor);
+                }
+            }
+        }
+
+        cout << endl;
+    }
+};
+
+int main() {
+    int vertices = 5;
+    Graph graph(vertices);
+
+    graph.addEdge(0, 1);
+    graph.addEdge(0, 4);
+    graph.addEdge(1, 2);
+    graph.addEdge(1, 3);
+    graph.addEdge(1, 4);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 4);
+
+    graph.printAdjList();
+
+    graph.DFS(0); // Start BFS from vertex 0
+
+    return 0;
+}
+
+```
+
+Для AdjMatrix
+```c++
+
+```
 
 ## Topological Sort
 
