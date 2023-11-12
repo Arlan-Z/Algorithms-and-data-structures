@@ -169,6 +169,88 @@ int main() {
 
 Для AdjMatrix
 ```c++
+#include <iostream>
+#include <vector>
+#include <stack>
+
+using namespace std;
+
+class Graph {
+private:
+    int vertices;
+    vector<vector<int>> adjMatrix;
+
+public:
+    Graph(int V) : vertices(V), adjMatrix(V, vector<int>(V, 0)) {}
+
+    void addEdge(int v, int w) {
+        adjMatrix[v][w] = 1;
+        adjMatrix[w][v] = 1; // Uncomment for undirected graph
+    }
+
+    void printAdjMatrix() {
+        for (int i = 0; i < vertices; ++i) {
+            for (int j = 0; j < vertices; ++j) {
+                cout << adjMatrix[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+
+    void DFS(int startVertex) {
+        vector<bool> visited(vertices, false);
+        stack<int> dfsStack;
+
+        visited[startVertex] = true;
+        dfsStack.push(startVertex);
+
+        cout << "DFS starting from vertex " << startVertex << ": ";
+
+        while (!dfsStack.empty()) {
+            int currentVertex = dfsStack.top();
+            dfsStack.pop();
+
+            cout << currentVertex << " ";
+
+            for (int i = 0; i < vertices; ++i) {
+                if (adjMatrix[currentVertex][i] == 1 && !visited[i]) {
+                    visited[i] = true;
+                    dfsStack.push(i);
+                }
+            }
+        }
+
+        cout << endl;
+    }
+};
+
+int main() {
+    int vertices = 5; // Change this as needed
+    Graph graph(vertices);
+
+    // Add edges
+    graph.addEdge(0, 1);
+    graph.addEdge(0, 4);
+    graph.addEdge(1, 2);
+    graph.addEdge(1, 3);
+    graph.addEdge(1, 4);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 4);
+
+    // Print adjacency matrix
+    graph.printAdjMatrix();
+
+    // Perform DFS
+    graph.DFS(0);
+
+    return 0;
+}
+
+```
+
+Для EdgeList
+
+```c++
 
 ```
 
