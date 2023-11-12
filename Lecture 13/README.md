@@ -447,6 +447,39 @@ public:
 
         return result;
     }
+
+    bool isCyclicUtil(int v, vector<int>& visited, vector<int>& recStack) {
+        if (!visited[v]) {
+            visited[v] = 1;
+            recStack[v] = 1;
+
+            for (const auto &edge : edges) {
+                if (edge.source == v) {
+                    if (!visited[edge.destination] && isCyclicUtil(edge.destination, visited, recStack)) {
+                        return true;
+                    } else if (recStack[edge.destination]) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        recStack[v] = 0;
+        return false;
+    }
+
+    bool isCyclic() {
+        vector<int> visited(edges.size(), 0);
+        vector<int> recStack(edges.size(), 0);
+
+        for (const auto &edge : edges) {
+            if (isCyclicUtil(edge.source, visited, recStack)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 };
 
 int main() {
@@ -474,8 +507,15 @@ int main() {
         cout << vertex << " ";
     }
 
+    if (edgeList.isCyclic()) {
+        cout << "\nThe graph contains a cycle.\n";
+    } else {
+        cout << "\nThe graph does not contain a cycle.\n";
+    }
+
     return 0;
 }
+
 
 ```
 
