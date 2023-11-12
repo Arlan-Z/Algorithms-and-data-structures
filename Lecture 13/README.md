@@ -40,6 +40,8 @@
 
 Вершина “2” смежна непройденной вершине “4”, следовательно мы помещаем ее в верх стека.
 
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/913fc54a-ebcc-4416-8b06-8e3a23c7e173)
+
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/a1838058-db37-44e0-b17c-d9cdba122e89)
 
 Добавляем вершину “4” в список “Пройденные” после прохождения.
