@@ -215,7 +215,7 @@ public:
 
         cout << endl;
     }
- bool isCyclicUtil(int v, vector<bool>& visited, vector<bool>& recStack) { // функция для нахождения цикла в графе
+    bool isCyclicUtil(int v, vector<bool>& visited, vector<bool>& recStack) { // функция для нахождения цикла в графе
         if (!visited[v]) {
             visited[v] = true;
             recStack[v] = true;
@@ -250,23 +250,29 @@ public:
 };
 
 int main() {
-    int vertices = 5; // Change this as needed
-    Graph graph(vertices);
+    // Create a graph with 5 vertices
+    Graph graph(5);
 
-    // Add edges
+    // Add edges to create a sample graph
     graph.addEdge(0, 1);
-    graph.addEdge(0, 4);
     graph.addEdge(1, 2);
+    graph.addEdge(2, 0);
     graph.addEdge(1, 3);
-    graph.addEdge(1, 4);
-    graph.addEdge(2, 3);
     graph.addEdge(3, 4);
 
-    // Print adjacency matrix
+    // Print the adjacency matrix of the graph
+    cout << "Adjacency Matrix:\n";
     graph.printAdjMatrix();
 
-    // Perform DFS
+    // Perform DFS starting from vertex 0
     graph.DFS(0);
+
+    // Check if the graph has a cycle
+    if (graph.isCyclic()) {
+        cout << "The graph contains a cycle.\n";
+    } else {
+        cout << "The graph does not contain a cycle.\n";
+    }
 
     return 0;
 }
