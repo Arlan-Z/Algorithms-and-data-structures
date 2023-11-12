@@ -13,20 +13,21 @@ https://rpruim.github.io/m252/S19/from-class/graphs/introduction-to-graphs.html
 ```c++
 #include <iostream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
 class Graph {
 private:
-    int vertices;  // вершина
-    vector<vector<int>> adjList; // можно использовать vector<linked list<int>> ....
+    int vertices;
+    vector<vector<int>> adjList;
 
 public:
     Graph(int V) : vertices(V), adjList(V) {}
-    
-    void addEdge(int v, int w) { // добавить ребро
+
+    void addEdge(int v, int w) {
         adjList[v].push_back(w);
-        adjList[w].push_back(v); // Uncomment for undirected graph
+        adjList[w].push_back(v);
     }
 
     void printAdjList() {
@@ -38,13 +39,38 @@ public:
             cout << endl;
         }
     }
+
+    void BFS(int startVertex) {
+        vector<bool> visited(vertices, false);
+        queue<int> bfsQueue;
+
+        visited[startVertex] = true;
+        bfsQueue.push(startVertex);
+
+        cout << "BFS starting from vertex " << startVertex << ": ";
+
+        while (!bfsQueue.empty()) {
+            int currentVertex = bfsQueue.front();
+            bfsQueue.pop();
+
+            cout << currentVertex << " ";
+
+            for (const auto &neighbor : adjList[currentVertex]) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    bfsQueue.push(neighbor);
+                }
+            }
+        }
+
+        cout << endl;
+    }
 };
 
 int main() {
-    int vertices = 5; // Change this as needed
+    int vertices = 5;
     Graph graph(vertices);
 
-    // Add edges
     graph.addEdge(0, 1);
     graph.addEdge(0, 4);
     graph.addEdge(1, 2);
@@ -53,12 +79,12 @@ int main() {
     graph.addEdge(2, 3);
     graph.addEdge(3, 4);
 
-    // Print adjacency list
     graph.printAdjList();
+
+    graph.BFS(0); // Start BFS from vertex 0
 
     return 0;
 }
-
 
 ```
 
