@@ -240,17 +240,17 @@ public:
         vector<int> result;
 
         queue<int> q;
-        q.push(startVertex);
+        q.push(startVertex); // начало пихаем в кучу
         visited[startVertex] = 1;
 
         while (!q.empty()) {
-            int currentVertex = q.front();
+            int currentVertex = q.front(); // текущий (который мы хотим посетить)
             q.pop();
-            result.push_back(currentVertex);
+            result.push_back(currentVertex); // которые мы посетили
 
             for (const auto &edge : edges) {
-                if (edge.source == currentVertex && !visited[edge.destination]) {
-                    q.push(edge.destination);
+                if (edge.source == currentVertex && !visited[edge.destination]) { // ищем его детей то есть те вершины с которыми текущий соединен
+                    q.push(edge.destination); // пихаем его в кучу
                     visited[edge.destination] = 1;
                 }
             }
