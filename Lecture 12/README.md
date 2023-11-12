@@ -41,24 +41,24 @@ public:
     }
 
     void BFS(int startVertex) {
-        vector<bool> visited(vertices, false);
-        queue<int> bfsQueue;
+        vector<bool> visited(vertices, false); // те вершины которые посещены и их не нужно посещать
+        queue<int> bfsQueue; // буферная куча вершин которых нужно посетить
 
-        visited[startVertex] = true;
-        bfsQueue.push(startVertex);
+        visited[startVertex] = true; // делаем начальный "посященным"
+        bfsQueue.push(startVertex); // запихиваем его в буфер
 
-        cout << "BFS starting from vertex " << startVertex << ": ";
+        cout << "BFS starting from vertex " << startVertex << ": "; 
 
-        while (!bfsQueue.empty()) {
-            int currentVertex = bfsQueue.front();
-            bfsQueue.pop();
+        while (!bfsQueue.empty()) { // пока буферная куча не будет пуста
+            int currentVertex = bfsQueue.front(); // текущая посещаемая вершина это первый элемент буфера , в следующей итерации он измениться на следующую в буфере то есть следующая будет первой изза нижней операции
+            bfsQueue.pop(); удаляем превый элемент в буфере
 
-            cout << currentVertex << " ";
+            cout << currentVertex << " "; // используем текущий
 
-            for (const auto &neighbor : adjList[currentVertex]) {
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-                    bfsQueue.push(neighbor);
+            for (const auto &neighbor : adjList[currentVertex]) { // ищем соседей те детей , тех которые дети текущего проходясь по всем вершинам с условием которое ниже
+                if (!visited[neighbor]) { // если вершина не посещена
+                    visited[neighbor] = true; // ставим ее как посещенной чтобы этот процесс заново не закинул его в буферную кучу
+                    bfsQueue.push(neighbor); // добавляем ребенка те соседа в кучу 
                 }
             }
         }
@@ -155,15 +155,15 @@ public:
         cout << "BFS starting from vertex " << startVertex << ": ";
 
         while (!bfsQueue.empty()) {
-            int currentVertex = bfsQueue.front();
-            bfsQueue.pop();
+            int currentVertex = bfsQueue.front(); // следующий который нужно посетить (текущий)
+            bfsQueue.pop(); // убираем посещенный (старый первый) элемент из буферной кучи
 
             cout << currentVertex << " ";
 
-            for (int i = 0; i < vertices; ++i) {
-                if (adjMatrix[currentVertex][i] == 1 && !visited[i]) {
-                    visited[i] = true;
-                    bfsQueue.push(i);
+            for (int i = 0; i < vertices; ++i) { // для всех вершин которые:
+                if (adjMatrix[currentVertex][i] == 1 && !visited[i]) { // для вершин которые не посещены и дети текущего
+                    visited[i] = true; // делаем детей посещенными
+                    bfsQueue.push(i);  //пихаем их в очередь
                 }
             }
         }
@@ -239,19 +239,19 @@ public:
         vector<int> visited(edges.size(), 0);
         vector<int> result;
 
-        queue<int> q;
+        queue<int> q; // буферная куча тех которых мы хотим посетить
         q.push(startVertex); // начало пихаем в кучу
         visited[startVertex] = 1;
 
         while (!q.empty()) {
             int currentVertex = q.front(); // текущий (который мы хотим посетить)
-            q.pop();
+            q.pop(); // убираем посещенный  из кучи
             result.push_back(currentVertex); // которые мы посетили
 
-            for (const auto &edge : edges) {
-                if (edge.source == currentVertex && !visited[edge.destination]) { // ищем его детей то есть те вершины с которыми текущий соединен
-                    q.push(edge.destination); // пихаем его в кучу
-                    visited[edge.destination] = 1;
+            for (const auto &edge : edges) { // пробегаемся по всем сторонам которые:
+                if (edge.source == currentVertex && !visited[edge.destination]) { // ищем его детей то есть те вершины с которыми текущий соединен (не посященные)
+                    q.push(edge.destination); // пихаем (того которого мы хотим посетить те детей )в кучу
+                    visited[edge.destination] = 1; // делаем этот элемент посещенным для того чтобы не возвращаться к нему
                 }
             }
         }
