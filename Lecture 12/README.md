@@ -116,8 +116,10 @@ https://www.youtube.com/watch?v=dhgKr8942rs
 
 
 ```c++
+
 #include <iostream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -145,23 +147,28 @@ public:
 
     void BFS(int startVertex) {
         vector<bool> visited(vertices, false);
-        queue<int> queue;
-    
+        queue<int> bfsQueue;
+
         visited[startVertex] = true;
-        queue.push(startVertex);
-    
-        while (!queue.empty()) {
-            int currentVertex = queue.front();
+        bfsQueue.push(startVertex);
+
+        cout << "BFS starting from vertex " << startVertex << ": ";
+
+        while (!bfsQueue.empty()) {
+            int currentVertex = bfsQueue.front();
+            bfsQueue.pop();
+
             cout << currentVertex << " ";
-            queue.pop();
-    
-            for (int adjacentVertex : adjacencyList[currentVertex]) {
-                if (!visited[adjacentVertex]) {
-                    visited[adjacentVertex] = true;
-                    queue.push(adjacentVertex);
+
+            for (int i = 0; i < vertices; ++i) {
+                if (adjMatrix[currentVertex][i] == 1 && !visited[i]) {
+                    visited[i] = true;
+                    bfsQueue.push(i);
                 }
             }
         }
+
+        cout << endl;
     }
 };
 
