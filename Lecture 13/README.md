@@ -251,6 +251,115 @@ int main() {
 Для EdgeList
 
 ```c++
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <stack>
+
+using namespace std;
+
+class Edge {
+public:
+    int source, destination, weight;
+
+    Edge(int src, int dest, int w) : source(src), destination(dest), weight(w) {}
+};
+
+class EdgeList {
+private:
+    vector<Edge> edges;
+
+public:
+    EdgeList() {}
+
+    void addEdge(int src, int dest, int weight) {
+        Edge ne(src, dest, weight);
+        edges.push_back(ne);
+    }
+
+    void printEdgeList() {
+        for (const auto &edge : edges) {
+            cout << "Edge: " << edge.source << " -> " << edge.destination;
+            cout << " (Weight: " << edge.weight << ")\n";
+        }
+    }
+
+    vector<int> bfs(int startVertex) {
+        vector<int> visited(edges.size(), 0);
+        vector<int> result;
+
+        queue<int> q;
+        q.push(startVertex);
+        visited[startVertex] = 1;
+
+        while (!q.empty()) {
+            int currentVertex = q.front();
+            q.pop();
+            result.push_back(currentVertex);
+
+            for (const auto &edge : edges) {
+                if (edge.source == currentVertex && !visited[edge.destination]) {
+                    q.push(edge.destination);
+                    visited[edge.destination] = 1;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    vector<int> dfs(int startVertex) {
+        vector<int> visited(edges.size(), 0);
+        vector<int> result;
+
+        stack<int> s;
+        s.push(startVertex);
+        visited[startVertex] = 1;
+
+        while (!s.empty()) {
+            int currentVertex = s.top();
+            s.pop();
+            result.push_back(currentVertex);
+
+            for (const auto &edge : edges) {
+                if (edge.source == currentVertex && !visited[edge.destination]) {
+                    s.push(edge.destination);
+                    visited[edge.destination] = 1;
+                }
+            }
+        }
+
+        return result;
+    }
+};
+
+int main() {
+    EdgeList edgeList;
+
+    edgeList.addEdge(0, 1, 5);
+    edgeList.addEdge(0, 2, 3);
+    edgeList.addEdge(1, 2, 1);
+    edgeList.addEdge(2, 3, 7);
+
+    cout << "Edge List:\n";
+    edgeList.printEdgeList();
+
+    cout << "\nBFS Traversal starting from vertex 0:\n";
+    vector<int> bfsResult = edgeList.bfs(0);
+
+    for (int vertex : bfsResult) {
+        cout << vertex << " ";
+    }
+
+    cout << "\nDFS Traversal starting from vertex 0:\n";
+    vector<int> dfsResult = edgeList.dfs(0);
+
+    for (int vertex : dfsResult) {
+        cout << vertex << " ";
+    }
+
+    return 0;
+}
 
 ```
 
