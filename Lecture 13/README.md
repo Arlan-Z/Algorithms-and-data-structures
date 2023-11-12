@@ -57,11 +57,11 @@
 
 Для AdjList
 ```c++
- 
 #include <iostream>
 #include <vector>
 #include <queue>
 #include <stack>
+
 using namespace std;
 
 class Graph {
@@ -111,7 +111,7 @@ public:
         }
         cout << endl;
     }
-    
+
     void DFS(int startVertex) {
         vector<bool> visited(vertices, false);
         stack<int> dfsStack;
@@ -137,6 +137,37 @@ public:
 
         cout << endl;
     }
+
+    bool isCyclicUtil(int v, vector<bool>& visited, vector<bool>& recStack) {
+        if (!visited[v]) {
+            visited[v] = true;
+            recStack[v] = true;
+
+            for (const auto &neighbor : adjList[v]) {
+                if (!visited[neighbor] && isCyclicUtil(neighbor, visited, recStack)) {
+                    return true;
+                } else if (recStack[neighbor]) {
+                    return true;
+                }
+            }
+        }
+
+        recStack[v] = false;
+        return false;
+    }
+
+    bool isCyclic() {
+        vector<bool> visited(vertices, false);
+        vector<bool> recStack(vertices, false);
+
+        for (int i = 0; i < vertices; ++i) {
+            if (isCyclicUtil(i, visited, recStack)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 };
 
 int main() {
@@ -153,10 +184,17 @@ int main() {
 
     graph.printAdjList();
 
-    graph.DFS(0); // Start BFS from vertex 0
+    graph.DFS(0);
+
+    if (graph.isCyclic()) {
+        cout << "The graph contains a cycle.\n";
+    } else {
+        cout << "The graph does not contain a cycle.\n";
+    }
 
     return 0;
 }
+
 
 ```
 
