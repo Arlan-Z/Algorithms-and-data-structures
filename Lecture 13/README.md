@@ -1265,3 +1265,81 @@ int main() {
 ```
 
 ## Topological Sort
+
+**AdjList**
+
+```c++
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <unordered_map>
+#include <unordered_set>
+#include <stack>
+using namespace std;
+
+class Graph {
+private:
+    int vertices;
+    unordered_map<int, unordered_set<int>> adjList;
+
+public:
+    Graph(int V) : vertices(V) {}
+
+    void addEdge(int v, int w) {
+        adjList[v].insert(w);
+        // Убираем добавление ребра в обратную сторону, чтобы избежать циклов
+        // adjList[w].insert(v);
+    }
+
+    void topologicalSortUtil(int v, unordered_map<int, bool>& visited, stack<int>& Stack) {
+        visited[v] = true;
+
+        for (int i : adjList[v]) {
+            if (!visited[i]) {
+                topologicalSortUtil(i, visited, Stack);
+            }
+        }
+
+        Stack.push(v);
+    }
+
+    void topologicalSort() {
+        stack<int> Stack;
+        unordered_map<int, bool> visited;
+
+        for (int i = 0; i < vertices; ++i) {
+            if (!visited[i]) {
+                topologicalSortUtil(i, visited, Stack);
+            }
+        }
+
+        cout << "Topological Sort: ";
+        while (!Stack.empty()) {
+            cout << Stack.top() << " ";
+            Stack.pop();
+        }
+        cout << endl;
+    }
+
+};
+
+int main() {
+    Graph g(6);
+    g.addEdge(5, 2);
+    g.addEdge(5, 0);
+    g.addEdge(4, 0);
+    g.addEdge(4, 1);
+    g.addEdge(2, 3);
+    g.addEdge(3, 1);
+
+    g.topologicalSort();
+
+    return 0;
+}
+
+```
+
+**AdjMatrix**
+
+```c++
+```
