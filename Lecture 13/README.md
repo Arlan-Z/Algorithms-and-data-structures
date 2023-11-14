@@ -1342,4 +1342,86 @@ int main() {
 **AdjMatrix**
 
 ```c++
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <unordered_map>
+#include <stack>
+using namespace std;
+
+class Graph {
+private:
+    int vertices;
+    unordered_map<int, unordered_map<int, bool>> adjMatrix;
+
+public:
+    Graph(int V) : vertices(V) {}
+
+    void addEdge(int v, int w) {
+        adjMatrix[v][w] = true;
+        // For an undirected graph, uncomment the line below
+        // adjMatrix[w][v] = true;
+    }
+
+    void DFSUtil(int v, unordered_map<int, bool>& visited) {
+        visited[v] = true;
+        cout << v << " ";
+
+        for (int i = 0; i < vertices; ++i) {
+            if (adjMatrix[v][i] && !visited[i]) {
+                DFSUtil(i, visited);
+            }
+        }
+    }
+
+    void DFS(int start) {
+        unordered_map<int, bool> visited;
+        DFSUtil(start, visited);
+    }
+
+    void sDFSUtil(int v, unordered_map<int, bool>& visited, stack<int>& stack) {
+        visited[v] = true;
+
+        for (int i = 0; i < vertices; ++i) {
+            if (adjMatrix[v][i] && !visited[i]) {
+                sDFSUtil(i, visited, stack);
+            }
+        }
+
+        stack.push(v);
+    }
+
+    void topologicalSort() {
+        unordered_map<int, bool> visited;
+        stack<int> stack;
+
+        for (int i = 0; i < vertices; ++i) {
+            if (!visited[i]) {
+                sDFSUtil(i, visited, stack);
+            }
+        }
+
+        while (!stack.empty()) {
+            cout << stack.top() << " ";
+            stack.pop();
+        }
+    }
+};
+
+int main() {
+    Graph g(6); // Creating a graph with 6 vertices
+
+    // Adding edges
+    g.addEdge(5, 2);
+    g.addEdge(5, 0);
+    g.addEdge(4, 0);
+    g.addEdge(4, 1);
+    g.addEdge(2, 3);
+    g.addEdge(3, 1);
+
+    cout << "Topological Sort: ";
+    g.topologicalSort(); // Performing topological sort
+
+    return 0;
+}
 ```
