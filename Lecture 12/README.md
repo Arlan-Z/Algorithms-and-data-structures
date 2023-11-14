@@ -319,10 +319,6 @@ v начинает гореть, в точности равен длине её 
 
 ![g](fw.gif)
 
-## Рекурсивная реализация BFS
-
-
-
 для понимания :
 
 https://ru.algorithmica.org/cs/shortest-paths/bfs/
