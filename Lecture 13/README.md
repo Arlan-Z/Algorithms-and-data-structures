@@ -1073,6 +1073,18 @@ public:
 
         return false;
     }
+
+    bool isConnected() {
+        vector<bool> visited(vertices, false);
+        BFS(0);
+    
+        for (int i = 0; i < vertices; ++i) {
+            if (!visited[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
 };
 
 int main() {
