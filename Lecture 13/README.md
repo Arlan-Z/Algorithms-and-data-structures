@@ -1455,3 +1455,11 @@ int main() {
     return 0;
 }
 ```
+
+для понимания:
+
+https://www.youtube.com/watch?v=7J3GadLzydI
+
+https://brestprog.by/topics/topsort/
+
+
