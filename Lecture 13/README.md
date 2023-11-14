@@ -571,6 +571,127 @@ DFS отличен от BFS в коде только тем что в DFS нов
 
 Выбор между DFS и BFS зависит от конкретной задачи, структуры данных (графа) и требований к результату.
 
+## Рекурсивная реализация DFS
+**AdjList**
+
+```c++
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Graph {
+private:
+    int vertices;
+    vector<vector<int>> adjList;
+
+public:
+    Graph(int V) : vertices(V), adjList(V) {}
+
+    void addEdge(int v, int w) {
+        adjList[v].push_back(w);
+        adjList[w].push_back(v);
+    }
+    
+    void DFSUtil(int v, vector<bool>& visited) {
+        visited[v] = true;
+        cout << v << " ";
+
+        for (int i : adjList[v]) {
+            if (!visited[i]) {
+                DFSUtil(i, visited);
+            }
+        }
+    }
+    void DFS(int start) {
+        vector<bool> visited(vertices, false);
+        DFSUtil(start, visited);
+    }
+};
+
+int main() {
+    Graph g(4);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 2);
+    g.addEdge(2, 3);
+
+
+    cout << "DFS traversal starting from vertex 0: ";
+    g.DFS(0);
+    cout << endl;
+
+    return 0;
+}
+```
+
+**AdjMatrix**
+
+```c++
+#include <iostream>
+#include <vector>
+#include <stack>
+
+using namespace std;
+
+class Graph {
+private:
+    int vertices;
+    vector<vector<int>> adjMatrix;
+
+public:
+    Graph(int V) : vertices(V), adjMatrix(V, vector<int>(V, 0)) {}
+
+    void addEdge(int v, int w) {
+        adjMatrix[v][w] = 1;
+        adjMatrix[w][v] = 1; // Uncomment for undirected graph
+    }
+    
+    void DFSUtil(int v, vector<bool>& visited) {
+        visited[v] = true;
+        cout << v << " ";
+
+        for (int i = 0; i < vertices; ++i) {
+            if (adjMatrix[v][i] && !visited[i]) {
+                DFSUtil(i, visited);
+            }
+        }
+    }
+    
+    void DFS(int start) {
+        vector<bool> visited(vertices, false);
+        DFSUtil(start, visited);
+    }
+
+    void printAdjMatrix() {
+        for (int i = 0; i < vertices; ++i) {
+            for (int j = 0; j < vertices; ++j) {
+                cout << adjMatrix[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    Graph g(4);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 2);
+    g.addEdge(2, 3);
+
+    cout << "Adjacency matrix:\n";
+    g.printAdjMatrix();
+
+    cout << "DFS traversal starting from vertex 0: ";
+    g.DFS(0);
+    cout << endl;
+
+    return 0;
+}
+```
+
+
 ## Нахождение цикла рекурсивно через DFS
 
 **AdjList**
@@ -783,8 +904,74 @@ int main() {
 
 ```
 
+**AdjMatrix**
 
-## Topological Sort
+```c++
+#include <iostream>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+class Graph {
+private:
+    int vertices;
+    vector<vector<int>> adjMatrix;
+
+public:
+    Graph(int V) : vertices(V), adjMatrix(V, vector<int>(V, 0)) {}
+
+    void addEdge(int v, int w) {
+        adjMatrix[v][w] = 1;
+        adjMatrix[w][v] = 1; // Uncomment for undirected graph
+    }
+
+    void BFSUtil(int start, vector<bool>& visited) {
+        queue<int> q;
+        q.push(start);
+        visited[start] = true;
+
+        while (!q.empty()) {
+            int v = q.front();
+            q.pop();
+
+            for (int i = 0; i < vertices; ++i) {
+                if (adjMatrix[v][i] && !visited[i]) {
+                    visited[i] = true;
+                    q.push(i);
+                }
+            }
+        }
+    }
+
+    bool isConnected() {
+        vector<bool> visited(vertices, false);
+        BFSUtil(0, visited);
+
+        for (bool visit : visited) {
+            if (!visit) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+int main() {
+    Graph g(4);
+    g.addEdge(0, 1);
+    g.addEdge(2, 3);
+
+    if (g.isConnected()) {
+        cout << "Graph is connected\n";
+    } else {
+        cout << "Graph is not connected\n";
+    }
+
+    return 0;
+}
+
+```
 
 ## AdjMatrix , AdjList через Хэш таблицу
 
@@ -802,122 +989,4 @@ int main() {
 
 ```
 
-## Рекурсивная реализация DFS
-**AdjList**
-
-```c++
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
-class Graph {
-private:
-    int vertices;
-    vector<vector<int>> adjList;
-
-public:
-    Graph(int V) : vertices(V), adjList(V) {}
-
-    void addEdge(int v, int w) {
-        adjList[v].push_back(w);
-        adjList[w].push_back(v);
-    }
-    
-    void DFSUtil(int v, vector<bool>& visited) {
-        visited[v] = true;
-        cout << v << " ";
-
-        for (int i : adjList[v]) {
-            if (!visited[i]) {
-                DFSUtil(i, visited);
-            }
-        }
-    }
-    void DFS(int start) {
-        vector<bool> visited(vertices, false);
-        DFSUtil(start, visited);
-    }
-};
-
-int main() {
-    Graph g(4);
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(1, 2);
-    g.addEdge(2, 3);
-
-
-    cout << "DFS traversal starting from vertex 0: ";
-    g.DFS(0);
-    cout << endl;
-
-    return 0;
-}
-```
-
-**AdjMatrix**
-
-```c++
-#include <iostream>
-#include <vector>
-#include <stack>
-
-using namespace std;
-
-class Graph {
-private:
-    int vertices;
-    vector<vector<int>> adjMatrix;
-
-public:
-    Graph(int V) : vertices(V), adjMatrix(V, vector<int>(V, 0)) {}
-
-    void addEdge(int v, int w) {
-        adjMatrix[v][w] = 1;
-        adjMatrix[w][v] = 1; // Uncomment for undirected graph
-    }
-    
-    void DFSUtil(int v, vector<bool>& visited) {
-        visited[v] = true;
-        cout << v << " ";
-
-        for (int i = 0; i < vertices; ++i) {
-            if (adjMatrix[v][i] && !visited[i]) {
-                DFSUtil(i, visited);
-            }
-        }
-    }
-    
-    void DFS(int start) {
-        vector<bool> visited(vertices, false);
-        DFSUtil(start, visited);
-    }
-
-    void printAdjMatrix() {
-        for (int i = 0; i < vertices; ++i) {
-            for (int j = 0; j < vertices; ++j) {
-                cout << adjMatrix[i][j] << " ";
-            }
-            cout << endl;
-        }
-    }
-};
-
-int main() {
-    Graph g(4);
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(1, 2);
-    g.addEdge(2, 3);
-
-    cout << "Adjacency matrix:\n";
-    g.printAdjMatrix();
-
-    cout << "DFS traversal starting from vertex 0: ";
-    g.DFS(0);
-    cout << endl;
-
-    return 0;
-}
-```
+## Topological Sort
