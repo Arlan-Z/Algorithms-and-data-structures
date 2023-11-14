@@ -985,19 +985,16 @@ int main() {
 #include <vector>
 #include <queue>
 #include <unordered_map>
-#include <unordered_set>
 
 using namespace std;
 
 class Graph {
 private:
     int vertices;
-    vector<vector<bool>> adjMatrix;
+    unordered_map<int, unordered_map<int, bool>> adjMatrix;
 
 public:
-    Graph(int V) : vertices(V) {
-        adjMatrix.resize(V, vector<bool>(V, false));
-    }
+    Graph(int V) : vertices(V) {}
 
     void addEdge(int v, int w) {
         adjMatrix[v][w] = true;
@@ -1005,7 +1002,7 @@ public:
         // adjMatrix[w][v] = true;
     }
 
-    void DFSUtil(int v, vector<bool>& visited) {
+    void DFSUtil(int v, unordered_map<int, bool>& visited) {
         visited[v] = true;
         cout << v << " ";
 
@@ -1017,12 +1014,12 @@ public:
     }
 
     void DFS(int start) {
-        vector<bool> visited(vertices, false);
+        unordered_map<int, bool> visited;
         DFSUtil(start, visited);
     }
 
     void BFS(int start) {
-        vector<bool> visited(vertices, false);
+        unordered_map<int, bool> visited;
         queue<int> q;
 
         q.push(start);
@@ -1044,7 +1041,7 @@ public:
         }
     }
 
-    bool isCyclicUtil(int v, vector<bool> & visited, int parent) {
+    bool isCyclicUtil(int v, unordered_map<int, bool>& visited, int parent) {
         visited[v] = true;
 
         for (int i = 0; i < vertices; ++i) {
@@ -1062,7 +1059,7 @@ public:
     }
 
     bool isCyclic() {
-        vector<bool> visited(vertices, false);
+        unordered_map<int, bool> visited;
 
         for (int i = 0; i < vertices; ++i) {
             if (!visited[i]) {
@@ -1075,9 +1072,9 @@ public:
     }
 
     bool isConnected() {
-        vector<bool> visited(vertices, false);
+        unordered_map<int, bool> visited;
         BFS(0);
-    
+
         for (int i = 0; i < vertices; ++i) {
             if (!visited[i]) {
                 return false;
@@ -1102,6 +1099,8 @@ int main() {
     cout << endl;
 
     cout << "Is the graph connected? " << (g.isConnected() ? "Yes" : "No") << endl;
+
+    cout << "Is the graph cyclic? " << (g.isCyclic() ? "Yes" : "No") << endl;
 
     return 0;
 }
