@@ -711,6 +711,78 @@ int main() {
 
 ```
 
+## Проверка на связанность графа (нет ли несколько не соединенных графов)
+
+**AdjList**
+
+```c++
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <list>
+
+using namespace std;
+
+class Graph {
+private:
+    int vertices;
+    vector<list<int>> adjList;
+
+public:
+    Graph(int V) : vertices(V), adjList(V) {}
+
+    void addEdge(int v, int w) {
+        adjList[v].push_back(w);
+        adjList[w].push_back(v); // Uncomment for undirected graph
+    }
+
+    void BFSUtil(int start, vector<bool>& visited) {
+        queue<int> q;
+        q.push(start);
+        visited[start] = true;
+
+        while (!q.empty()) {
+            int v = q.front();
+            q.pop();
+
+            for (auto i : adjList[v]) {
+                if (!visited[i]) {
+                    visited[i] = true;
+                    q.push(i);
+                }
+            }
+        }
+    }
+
+    bool isConnected() {
+        vector<bool> visited(vertices, false);
+        BFSUtil(0, visited);
+
+        for (bool visit : visited) {
+            if (!visit) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+int main() {
+    Graph g(4);
+    g.addEdge(0, 1);
+    g.addEdge(2, 3);
+
+    if (g.isConnected()) {
+        cout << "Graph is connected\n";
+    } else {
+        cout << "Graph is not connected\n";
+    }
+
+    return 0;
+}
+
+```
+
 
 ## Topological Sort
 
