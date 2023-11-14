@@ -1456,6 +1456,9 @@ int main() {
 }
 ```
 
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/d63f8028-084e-4942-a5b9-8c042d71705a)
+
+
 для понимания:
 
 лучшее: https://aquarchitect.github.io/swift-algorithm-club/Topological%20Sort/
