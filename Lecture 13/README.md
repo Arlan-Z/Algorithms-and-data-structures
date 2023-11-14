@@ -981,12 +981,275 @@ int main() {
 **AdjMatrix**
 
 ```c++
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <unordered_map>
+#include <unordered_set>
+
+using namespace std;
+
+class Graph {
+private:
+    int vertices;
+    vector<vector<bool>> adjMatrix;
+
+public:
+    Graph(int V) : vertices(V) {
+        adjMatrix.resize(V, vector<bool>(V, false));
+    }
+
+    void addEdge(int v, int w) {
+        adjMatrix[v][w] = true;
+        // For an undirected graph, uncomment the line below
+        // adjMatrix[w][v] = true;
+    }
+
+    void DFSUtil(int v, vector<bool>& visited) {
+        visited[v] = true;
+        cout << v << " ";
+
+        for (int i = 0; i < vertices; ++i) {
+            if (adjMatrix[v][i] && !visited[i]) {
+                DFSUtil(i, visited);
+            }
+        }
+    }
+
+    void DFS(int start) {
+        vector<bool> visited(vertices, false);
+        DFSUtil(start, visited);
+    }
+
+    void BFS(int start) {
+        vector<bool> visited(vertices, false);
+        queue<int> q;
+
+        q.push(start);
+        visited[start] = true;
+
+        cout << "BFS traversal starting from vertex " << start << ": ";
+
+        while (!q.empty()) {
+            int curr = q.front();
+            q.pop();
+            cout << curr << " ";
+
+            for (int i = 0; i < vertices; ++i) {
+                if (adjMatrix[curr][i] && !visited[i]) {
+                    visited[i] = true;
+                    q.push(i);
+                }
+            }
+        }
+    }
+
+    bool isCyclicUtil(int v, vector<bool> & visited, int parent) {
+        visited[v] = true;
+
+        for (int i = 0; i < vertices; ++i) {
+            if (adjMatrix[v][i]) {
+                if (!visited[i]) {
+                    if (isCyclicUtil(i, visited, v))
+                        return true;
+                } else if (i != parent) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    bool isCyclic() {
+        vector<bool> visited(vertices, false);
+
+        for (int i = 0; i < vertices; ++i) {
+            if (!visited[i]) {
+                if (isCyclicUtil(i, visited, -1))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+};
+
+int main() {
+    Graph g(6); // Increase the size for the disconnected vertices
+    g.addEdge(0, 1);
+    g.addEdge(1, 2);
+    g.addEdge(2, 3);
+    g.addEdge(4, 5); // Adding edges to create a disconnected graph
+
+    cout << "DFS traversal starting from vertex 0: ";
+    g.DFS(0);
+    cout << endl;
+
+    g.BFS(0);
+    cout << endl;
+
+    cout << "Is the graph connected? " << (g.isConnected() ? "Yes" : "No") << endl;
+
+    return 0;
+}
 
 ```
 
 **AdjList**
 
 ```c++
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <unordered_map>
+#include <unordered_set>
+
+using namespace std;
+
+class Graph {
+private:
+    int vertices;
+    unordered_map<int, unordered_set<int>> adjList;
+
+public:
+    Graph(int V) : vertices(V) {}
+
+    void addEdge(int v, int w) {
+        adjList[v].insert(w);
+        // Убираем добавление ребра в обратную сторону, чтобы избежать циклов
+        // adjList[w].insert(v);
+    }
+
+    void DFSUtil(int v, unordered_map<int, bool>& visited) {
+        visited[v] = true;
+        cout << v << " ";
+
+        for (int i : adjList[v]) {
+            if (!visited[i]) {
+                DFSUtil(i, visited);
+            }
+        }
+    }
+
+    void DFS(int start) {
+        unordered_map<int, bool> visited;
+        DFSUtil(start, visited);
+    }
+
+    void BFS(int start) {
+        unordered_map<int, bool> visited;
+        queue<int> q;
+
+        q.push(start);
+        visited[start] = true;
+
+        cout << "BFS traversal starting from vertex " << start << ": ";
+
+        while (!q.empty()) {
+            int curr = q.front();
+            q.pop();
+            cout << curr << " ";
+
+            for (auto r : adjList[curr]) {
+                if (!visited[r]) {
+                    visited[r] = true;
+                    q.push(r);
+                }
+            }
+        }
+    }
+
+    void BFSUtil(queue<int>& q, unordered_map<int, bool>& visited) {
+        if (q.empty()) return;
+
+        int curr = q.front();
+        q.pop();
+        cout << curr << " ";
+
+        for (int neighbor : adjList[curr]) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                q.push(neighbor);
+            }
+        }
+
+        BFSUtil(q, visited);
+    }
+
+    void recBFS(int start) { // рекурсивная реализация на самом деле без смысленна и достаточно обычной
+        unordered_map<int, bool> visited;
+        queue<int> q;
+
+        q.push(start);
+        visited[start] = true;
+
+        cout << "BFS traversal starting from vertex " << start << ": ";
+        BFSUtil(q, visited);
+    }
+
+
+    bool isCyclicUtil(int v, unordered_map<int, bool> & visited, int parent) {
+        visited[v] = true;
+
+        for (int i : adjList[v]) {
+            if (!visited[i]) {
+                if (isCyclicUtil(i, visited, v))
+                    return true;
+            } else if (i != parent) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool isCyclic() {
+        unordered_map<int, bool> visited;
+
+        for (int i = 0; i < vertices; ++i) {
+            if (!visited[i]) {
+                if (isCyclicUtil(i, visited, -1))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool isConnected() {
+        unordered_map<int, bool> visited;
+        recBFS(0); // без разницы какой BFS я использовал рекурсивный
+
+        for (auto& node : adjList) {
+            int v = node.first;
+            if (!visited[v]) {
+                return false; 
+            }
+        }
+        return true;
+    }
+
+};
+
+int main() {
+    Graph g(6); // Increase the size for the disconnected vertices
+    g.addEdge(0, 1);
+    g.addEdge(1, 2);
+    g.addEdge(2, 3);
+    g.addEdge(4, 5); // Adding edges to create a disconnected graph
+
+    cout << "DFS traversal starting from vertex 0: ";
+    g.DFS(0);
+    cout << endl;
+
+    g.BFS(0);
+    cout << endl;
+
+    cout << "Is the graph connected? " << (g.isConnected() ? "Yes" : "No") << endl;
+
+    return 0;
+}
 
 ```
 
