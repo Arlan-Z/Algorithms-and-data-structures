@@ -4,8 +4,7 @@
 Ну если рассматривать его полностью если префикс функция занимает k и сам алгоритм n то временная сложность будет O(n+k)
 
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/b4959428-0ef9-4a08-a5ea-d6c5d99377fe)
-![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/af015d42-d8af-4340-8025-8b1cbe7a4231)
-
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/952b0ddc-8658-4acb-8272-067579f8de08)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/1724aa42-7ca3-484f-8915-33ed2d50930e)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/07a574c5-1fbe-4ca5-905f-ada890cf62a1)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/d434bb89-a34d-4067-8c5a-376415e1e5f1)
