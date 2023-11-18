@@ -9,6 +9,25 @@
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/07a574c5-1fbe-4ca5-905f-ada890cf62a1)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/d434bb89-a34d-4067-8c5a-376415e1e5f1)
 
+1. Текст: "onionionspl"
+2. Образец: "onions" pattern length = 6
+3. Префикс-функция: [0, 0, 0, 1, 2, 0]
+
+- Индекс i для текста начинается с 0, индекс j для образца также начинается с 0.
+
+Идем по тексту и сравниваем символы:
+
+- text[i] = 'o', pattern[j] = 'o': Совпадение! Увеличиваем i и j (i = 0, j = 0).
+- text[i] = 'n', pattern[j] = 'n': Совпадение! Увеличиваем i и j (i = 1, j = 1).
+- text[i] = 'i', pattern[j] = 'i': Совпадение! Увеличиваем i и j (i = 2, j = 2).
+- text[i] = 'o', pattern[j] = 'o': Совпадение! Увеличиваем i и j (i = 3, j = 3).
+- text[i] = 'n', pattern[j] = 'n': Совпадение! Увеличиваем i и j (i = 4, j = 4).
+- text[i] = 'i', pattern[j] = 's': (i = 5, j = 5) Несовпадение! Используем префикс-функцию для обновления индекса (i oставляем так как j!=0) j: j = prefix[j - 1] = prefix[5-1] = 2.
+- text[i] = 'i', pattern[j] = 'i': Совпадение! Увеличиваем i и j (i = 5, j = 2).
+- text[i] = 'o', pattern[j] = 'o': Совпадение! Увеличиваем i и j (i = 6, j = 3). 
+- text[i] = 'n', pattern[j] = 'n': Совпадение! Увеличиваем i и j (i = 7, j = 4).
+- text[i] = 's', pattern[j] = 's': Совпадение! Увеличиваем i и j (i = 8, j = 5). 
+Таким образом, вхождение "onions" найдено в позиции 3 в тексте "onionionspl".
 
 ```c++
 #include <iostream>
