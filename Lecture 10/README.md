@@ -620,12 +620,12 @@ void RabinKarpSearch(const string& text, const string& pattern, int x = 256, int
         // Если хэши совпадают, проверяем символы посимвольно
         if (patternHash == textHash) {
             bool match = true;
-            for (int j = 0; j < m; j++) { // дополнительная проверка
-                if (pattern[j] != text[i + j]) {
-                    match = false;
-                    break;
-                }
-            }
+            //for (int j = 0; j < m; j++) { // дополнительная проверка
+            //     if (pattern[j] != text[i + j]) {
+            //        match = false;
+            //        break;
+            //    }
+            //}
             if (match) {
                 cout << "Pattern found at index " << i << endl;
             }
