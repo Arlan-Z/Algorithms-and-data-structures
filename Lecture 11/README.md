@@ -7,7 +7,7 @@
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/952b0ddc-8658-4acb-8272-067579f8de08)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/1fda41b4-bb67-4857-bc0c-99b1bd6f2801)
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/03f8f15a-d73a-4860-b090-fc2976183303)
-![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/d434bb89-a34d-4067-8c5a-376415e1e5f1)
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/b703ee86-7036-4b40-9821-ffff9746807d)
 
 1. Текст: "onionionspl"
 2. Образец: "onions" pattern length = 6
