@@ -1,4 +1,4 @@
-## DFS
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/5f86b727-6c0d-4b23-a2b0-773a467548ca)## DFS
 
 “Поиск в глубину” или “обход в глубину” — это рекурсивный алгоритм по поиску всех вершин графа или дерева. Обход подразумевает под собой посещение всех вершин графа.
 
@@ -1466,6 +1466,9 @@ int main() {
 https://www.youtube.com/watch?v=7J3GadLzydI
 
 https://brestprog.by/topics/topsort/
+
+
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/8827eb34-8f2d-4dd1-bb78-e8544e9d95c5)
 
 
 
