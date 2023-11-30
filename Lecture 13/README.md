@@ -1470,5 +1470,6 @@ https://brestprog.by/topics/topsort/
 
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/8827eb34-8f2d-4dd1-bb78-e8544e9d95c5)
 
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/8779cda2-745b-4ab7-9252-ea77221af1ae)
 
 
