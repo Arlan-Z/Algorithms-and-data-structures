@@ -243,7 +243,7 @@ https://www.youtube.com/watch?v=kBW6oPaVjq0
 проверил это на примере
 пример из lab 9 c:
 
-```с++
+```сpp
 #include <iostream>
 #include <string>
 #include <vector>
