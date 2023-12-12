@@ -1277,6 +1277,138 @@ int main() {
 Это позволяет получить упорядоченный список вершин, который удовлетворяет условиям топологической сортировки: каждая вершина идет после всех своих предшествующих вершин в графе.
 
 **AdjList**
+```cpp
+class Graph {
+private:
+    int vertices;
+    vector<vector<int>> adjList;
+
+public:
+    Graph(int V) : vertices(V), adjList(V) {}
+
+    void addEdge(int v, int w) {
+        adjList[v].push_back(w);
+        // Если нужно избежать добавления обратных рёбер для предотвращения циклов:
+        // adjList[w].push_back(v);
+    }
+
+    void topologicalSortUtil(int v, vector<bool>& visited, stack<int>& Stack) {
+        visited[v] = true;
+
+        for (int i : adjList[v]) {
+            if (!visited[i]) {
+                topologicalSortUtil(i, visited, Stack);
+            }
+        }
+
+        Stack.push(v);
+    }
+
+    void topologicalSort() {
+        stack<int> Stack;
+        vector<bool> visited(vertices, false);
+
+        for (int i = 0; i < vertices; ++i) {
+            if (!visited[i]) {
+                topologicalSortUtil(i, visited, Stack);
+            }
+        }
+
+        cout << "Topological Sort: ";
+        while (!Stack.empty()) {
+            cout << Stack.top() << " ";
+            Stack.pop();
+        }
+        cout << endl;
+    }
+
+};
+
+int main() {
+    Graph g(6);
+    g.addEdge(5, 2);
+    g.addEdge(5, 0);
+    g.addEdge(4, 0);
+    g.addEdge(4, 1);
+    g.addEdge(2, 3);
+    g.addEdge(3, 1);
+
+    g.topologicalSort();
+
+    return 0;
+}
+
+```
+
+**AdjMatrix**
+
+```cpp
+
+class Graph {
+private:
+    int vertices;
+    vector<vector<int>> adjMatrix;
+
+public:
+    Graph(int V) : vertices(V), adjMatrix(V) {}
+
+    void addEdge(int v, int w) {
+        adjList[v].push_back(w);
+        // For an undirected graph, uncomment the line below
+        // adjList[w].push_back(v);
+    }
+
+    void sDFSUtil(int v, vector<bool>& visited, stack<int>& stack) { // наш дфс
+        visited[v] = true;
+
+        for (int i : adjMatrix[v]) {
+            if (!visited[i]) {
+                sDFSUtil(i, visited, stack);
+            }
+        }
+
+        stack.push(v); // заполняем стек в конце после прохода дфс а не перед ним и нам не нужно его разварачивать так как это стек и заполняется с начала а не с конца
+    }
+
+    void topologicalSort() {
+        vector<bool> visited(vertices, false);
+        stack<int> stack;
+
+        for (int i = 0; i < vertices; ++i) {
+            if (!visited[i]) { // проходим по всем вершинам через дфс
+                sDFSUtil(i, visited, stack);
+            }
+        }
+
+        cout << "Topological Sort: ";
+        while (!stack.empty()) {
+            cout << stack.top() << " ";
+            stack.pop();
+        }
+    }
+};
+
+int main() {
+    Graph g(6); // Creating a graph with 6 vertices
+
+    // Adding edges
+    g.addEdge(5, 2);
+    g.addEdge(5, 0);
+    g.addEdge(4, 0);
+    g.addEdge(4, 1);
+    g.addEdge(2, 3);
+    g.addEdge(3, 1);
+
+    g.topologicalSort(); // Performing topological sort
+
+    return 0;
+}
+
+```
+
+через хэш таблицу
+
+**AdjList**
 
 ```c++
 #include <iostream>
