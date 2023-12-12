@@ -82,7 +82,9 @@ public:
         int index = hashFunction(key);
         return table[index] == key;
     }
-
+    int search(int index) { 
+        return table[index];
+    }
     // Удаление элемента из таблицы
     void remove(int key) {
         int index = hashFunction(key);
