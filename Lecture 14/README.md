@@ -1,7 +1,10 @@
 ## Spanning tree algorithms (Kruskal, Prima)
 https://www.youtube.com/watch?v=JZBQLXgSGfs
+
 https://www.youtube.com/watch?v=0jNmHPfA_yE
+
 https://www.youtube.com/watch?v=ayW5B2W9hfo
+
 ```cpp
 #include <iostream>
 #include <vector>
