@@ -17,7 +17,7 @@ void bellmanFord(vector<Edge>& edges, int V, int start) { // edge List
     vector<int> distances(V, INF);
     distances[start] = 0;
 
-    // Проходим по всем ребрам V-1 раз для оптимальности
+    // Проходим по всем вершинам
     for (int i = 0; i < V - 1; ++i) {
         for (const auto& edge : edges) {
             if (distances[edge.source] != INF &&
