@@ -1587,6 +1587,7 @@ int main() {
     return 0;
 }
 ```
+![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/e3c123e0-4f63-4ea4-84c7-2e333c681cd3)
 
 ![image](https://github.com/Arlan-Z/Algorithms-and-data-structures/assets/122739941/d63f8028-084e-4942-a5b9-8c042d71705a)
 
