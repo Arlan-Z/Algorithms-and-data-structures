@@ -1,6 +1,8 @@
 # Complexity and Memory
 ![Markdown](https://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png)
 
+https://e-maxx.ru/algo/
+
 ## Временная сложность
 Временная сложность алгоритма определяет количество
 времени, затрачиваемого алгоритмом на выполнение, как функцию от длины
